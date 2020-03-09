@@ -1,1 +1,2 @@
-1. projekt z PIV
+Projekt z PIV
+Aplikacja w technologii WinForms używająca bazy danych
