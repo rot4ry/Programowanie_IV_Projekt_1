@@ -112,17 +112,22 @@ namespace Database_Builder
             string partManufacturer = @ProducerNames[producerID];
 
             string partCode = Guid.NewGuid().ToString();
-            
+
+            int quantity = rnd.Next(1, 20);
+
             return new Product() {
                 CarBrand = carBrand,
                 CarModel = carModel,
                 CarFirstProdYear = fYear,
                 CarLastProdYear = lYear,
+
                 Price = price,
                 PartName = @partName,
                 PartCategory = partCategory,
                 PartManufacturer = partManufacturer,
-                PartCode = partCode
+                PartCode = partCode,
+                IsAvailable = true,
+                QtAvailable = quantity
             };
         }
     }

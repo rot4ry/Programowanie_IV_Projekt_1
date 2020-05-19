@@ -22,6 +22,9 @@ namespace Database_Builder
         public string PartCategory { get; set; }
         public string PartManufacturer { get; set; }
         public string PartCode { get; set; }
+        public bool IsAvailable { get; set; }
+        public int QtAvailable { get; set; }
+
 
         public Product()
         {
@@ -33,7 +36,8 @@ namespace Database_Builder
         
             string carBrand, string carModel, int firstYear, int lastYear,
             decimal price,
-            string partName, string partCategory, string partManufacturer, string partCode)
+            string partName, string partCategory, string partManufacturer, string partCode,
+            bool isAvailable, int qtAvailable)
         {
             //this one wasn't particulary meant to be used by the user
             //using this in InputBuilder.BuildProduct() causes some massive errors
@@ -49,6 +53,8 @@ namespace Database_Builder
             PartCategory = partCategory;
             PartManufacturer = partManufacturer;
             PartCode = partCode;
+            IsAvailable = isAvailable;
+            QtAvailable = qtAvailable;
         }
 
         public void PrintDetails()
@@ -64,6 +70,8 @@ namespace Database_Builder
             Console.WriteLine($"Brand:              {CarBrand}");
             Console.WriteLine($"Model:              {CarModel}");
             Console.WriteLine($"Produced from       {CarFirstProdYear} to {CarLastProdYear}");
+            Console.WriteLine($"Is available:       {IsAvailable}");
+            Console.WriteLine($"Quantity available: {QtAvailable}");
         }
     }
 }

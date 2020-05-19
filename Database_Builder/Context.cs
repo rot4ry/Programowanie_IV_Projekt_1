@@ -1,5 +1,6 @@
 ﻿using System;   
 using System.Collections.Generic;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using Microsoft.EntityFrameworkCore;
 
@@ -15,7 +16,7 @@ namespace Database_Builder
 
             string connectionString = @"
                     Data Source=DESKTOP-GSQML5J\MYSERVER;
-                    Initial Catalog=Project_Database;
+                    Initial Catalog=TheShop;
                     Integrated Security=True;
                     Connect Timeout=30;
                     Encrypt=False;
@@ -67,7 +68,7 @@ namespace Database_Builder
 
             //Product details
             mb.Entity<Product>().Property(x => x.PartName)
-                .HasColumnType("varchar(400)")
+                .HasColumnType("varchar(255)")
                 .HasColumnName("Name")
                 .IsRequired();
 
@@ -85,6 +86,16 @@ namespace Database_Builder
                 .HasColumnType("varchar(36)")
                 .HasColumnName("Code")
                 .IsRequired();
+
+            mb.Entity<Product>().Property(x => x.IsAvailable)
+                .HasColumnName("Is Available?")
+                .IsRequired();
+
+            mb.Entity<Product>().Property(x => x.QtAvailable)
+                .HasColumnName("Quantity")
+                .HasColumnType("int");
+
+
         }
     }
 }
