@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore.Storage;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 
@@ -12,7 +13,7 @@ namespace Database_Builder
             databaseContext.Database.EnsureCreated();
 
             Insert(databaseContext);
-
+            
             databaseContext.SaveChanges();
         }
 

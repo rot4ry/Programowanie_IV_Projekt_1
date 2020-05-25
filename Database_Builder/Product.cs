@@ -7,7 +7,7 @@ namespace Database_Builder
 {
     public class Product
     {
-        public int ID { get; private set; }
+        public int ProductID { get; private set; }
         //this part fits in:
         public string CarBrand { get; set; }
         public string CarModel { get; set; }
@@ -59,7 +59,7 @@ namespace Database_Builder
 
         public void PrintDetails()
         {
-            Console.WriteLine($"Id:                 {ID}"); //managed by the Context modelBuilder
+            Console.WriteLine($"Id:                 {ProductID}"); //managed by the Context modelBuilder
             Console.WriteLine($"Code:               {PartCode}");
             Console.WriteLine($"Part name:          {PartName}");
             Console.WriteLine($"Category:           {PartCategory}");
@@ -75,4 +75,3 @@ namespace Database_Builder
         }
     }
 }
-
