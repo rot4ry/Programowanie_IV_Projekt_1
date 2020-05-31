@@ -1,7 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore.Storage;
-using System;
-using System.Data.SqlClient;
-using System.Runtime.Remoting.Contexts;
+﻿using System;
 using System.Text;
 using System.Windows.Forms;
 
@@ -14,15 +11,16 @@ namespace TheBestCarShop
             InitializeComponent();
         }
 
+        private void form_CreateAccount_Load(object sender, EventArgs e)
+        {
+            this.ActiveControl = label1;
+        }
 
         private bool isUsernameGenerated = false;
         private void EnableCreateAccount()
         {   
             //Needs an event?
 
-            //enabled if  -> all STAR fields are filled
-            //          -> all checkboxes are checked
-            //          -> username is generated
             if( (_Counter.IsReady() == true)                        &&
                 (isUsernameGenerated == true)                       && 
                 (loginTB.Text != DefaultTexts._username)            &&
@@ -43,9 +41,6 @@ namespace TheBestCarShop
         //BUTTONS
         private void createAccountButton_Click(object sender, EventArgs e)
         {
-            //[TODO]
-            //sql insert Client{ID, Name, ... }
-
             string companyName = @companyNameTB.Text;
             if (companyNameTB.Text == DefaultTexts._companyName)
                 companyName = "No details.";
@@ -62,10 +57,10 @@ namespace TheBestCarShop
             DatabaseHandler dh = new DatabaseHandler();
             try
             {
-                dh.AddUser(new Client()
+                int affected = dh.AddUser(new Client()
                 {
                     FirstName = @nameTB.Text,
-                    Surname = @surnameTB.Text,
+                    SecondName = @surnameTB.Text,
                     CompanyName = @companyName,
                     Email = @mailTB.Text,
                     PhoneNumber = @phoneTB.Text,
@@ -78,17 +73,19 @@ namespace TheBestCarShop
                     Password = finalPassword,
                 }
                 );
+                
+                if (affected == 1)
+                {
+                    form_SystemMessage message = new form_SystemMessage
+                ("Success!", "Your account has been created!", this);
+                }
             }
             catch (Exception whileInserting)
             {
                 Console.WriteLine(whileInserting.Message);
-                var alert = new form_SystemMessage
+                form_SystemMessage alert = new form_SystemMessage
                     ("Failure!", "Your account wasn't created. \nTry again please.");
             }
-
-            var message = new form_SystemMessage
-                ("Success!", "Your account has been created!", this);
-
         }
 
         private void generateUsernameButton_Click(object sender, EventArgs e)
@@ -327,5 +324,7 @@ namespace TheBestCarShop
         {
             EnableCreateAccount();
         }
+
+        
     }
 }

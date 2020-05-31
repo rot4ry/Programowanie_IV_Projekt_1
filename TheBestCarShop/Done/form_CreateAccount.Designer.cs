@@ -66,7 +66,7 @@
             this.createAccountButton.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.createAccountButton.BackColor = System.Drawing.Color.Ivory;
+            this.createAccountButton.BackColor = System.Drawing.Color.Snow;
             this.createAccountButton.Enabled = false;
             this.createAccountButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.createAccountButton.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold);
@@ -75,7 +75,7 @@
             this.createAccountButton.Margin = new System.Windows.Forms.Padding(250, 3, 250, 10);
             this.createAccountButton.Name = "createAccountButton";
             this.createAccountButton.Size = new System.Drawing.Size(163, 42);
-            this.createAccountButton.TabIndex = 0;
+            this.createAccountButton.TabIndex = 20;
             this.createAccountButton.Text = "Create account";
             this.createAccountButton.UseVisualStyleBackColor = false;
             this.createAccountButton.Click += new System.EventHandler(this.createAccountButton_Click);
@@ -94,7 +94,7 @@
             this.personalBox.Margin = new System.Windows.Forms.Padding(30, 3, 30, 3);
             this.personalBox.Name = "personalBox";
             this.personalBox.Size = new System.Drawing.Size(288, 189);
-            this.personalBox.TabIndex = 1;
+            this.personalBox.TabIndex = 0;
             this.personalBox.TabStop = false;
             this.personalBox.Text = "Personal Details";
             // 
@@ -106,7 +106,7 @@
             this.phoneTB.Margin = new System.Windows.Forms.Padding(25, 3, 25, 15);
             this.phoneTB.Name = "phoneTB";
             this.phoneTB.Size = new System.Drawing.Size(232, 27);
-            this.phoneTB.TabIndex = 4;
+            this.phoneTB.TabIndex = 5;
             this.phoneTB.Text = " Phone number ★";
             this.phoneTB.Enter += new System.EventHandler(this.phoneTB_Enter);
             this.phoneTB.Leave += new System.EventHandler(this.phoneTB_Leave);
@@ -119,7 +119,7 @@
             this.mailTB.Margin = new System.Windows.Forms.Padding(25, 3, 25, 15);
             this.mailTB.Name = "mailTB";
             this.mailTB.Size = new System.Drawing.Size(232, 27);
-            this.mailTB.TabIndex = 3;
+            this.mailTB.TabIndex = 4;
             this.mailTB.Text = " e-mail address ★";
             this.mailTB.Enter += new System.EventHandler(this.mailTB_Enter);
             this.mailTB.Leave += new System.EventHandler(this.mailTB_Leave);
@@ -132,7 +132,7 @@
             this.companyNameTB.Margin = new System.Windows.Forms.Padding(25, 3, 25, 15);
             this.companyNameTB.Name = "companyNameTB";
             this.companyNameTB.Size = new System.Drawing.Size(232, 27);
-            this.companyNameTB.TabIndex = 2;
+            this.companyNameTB.TabIndex = 3;
             this.companyNameTB.Text = " Company Name";
             this.companyNameTB.Enter += new System.EventHandler(this.companyNameTB_Enter);
             this.companyNameTB.Leave += new System.EventHandler(this.companyNameTB_Leave);
@@ -145,7 +145,7 @@
             this.surnameTB.Margin = new System.Windows.Forms.Padding(25, 3, 25, 15);
             this.surnameTB.Name = "surnameTB";
             this.surnameTB.Size = new System.Drawing.Size(232, 27);
-            this.surnameTB.TabIndex = 1;
+            this.surnameTB.TabIndex = 2;
             this.surnameTB.Text = " Second name ★";
             this.surnameTB.Enter += new System.EventHandler(this.surnameTB_Enter);
             this.surnameTB.Leave += new System.EventHandler(this.surnameTB_Leave);
@@ -158,7 +158,7 @@
             this.nameTB.Margin = new System.Windows.Forms.Padding(25, 3, 25, 15);
             this.nameTB.Name = "nameTB";
             this.nameTB.Size = new System.Drawing.Size(232, 27);
-            this.nameTB.TabIndex = 0;
+            this.nameTB.TabIndex = 1;
             this.nameTB.Text = " First name ★";
             this.nameTB.Enter += new System.EventHandler(this.nameTB_Enter);
             this.nameTB.Leave += new System.EventHandler(this.nameTB_Leave);
@@ -176,7 +176,7 @@
             this.addressBox.Margin = new System.Windows.Forms.Padding(30, 3, 30, 3);
             this.addressBox.Name = "addressBox";
             this.addressBox.Size = new System.Drawing.Size(288, 189);
-            this.addressBox.TabIndex = 2;
+            this.addressBox.TabIndex = 6;
             this.addressBox.TabStop = false;
             this.addressBox.Text = "Address Details";
             // 
@@ -188,7 +188,7 @@
             this.postcodeTB.Margin = new System.Windows.Forms.Padding(25, 3, 25, 15);
             this.postcodeTB.Name = "postcodeTB";
             this.postcodeTB.Size = new System.Drawing.Size(232, 27);
-            this.postcodeTB.TabIndex = 3;
+            this.postcodeTB.TabIndex = 10;
             this.postcodeTB.Text = " Postcode ★";
             this.postcodeTB.Enter += new System.EventHandler(this.postcodeTB_Enter);
             this.postcodeTB.Leave += new System.EventHandler(this.postcodeTB_Leave);
@@ -201,7 +201,7 @@
             this.buildingTB.Margin = new System.Windows.Forms.Padding(25, 3, 25, 15);
             this.buildingTB.Name = "buildingTB";
             this.buildingTB.Size = new System.Drawing.Size(232, 27);
-            this.buildingTB.TabIndex = 4;
+            this.buildingTB.TabIndex = 11;
             this.buildingTB.Text = " Building number ★";
             this.buildingTB.Enter += new System.EventHandler(this.buildingTB_Enter);
             this.buildingTB.Leave += new System.EventHandler(this.buildingTB_Leave);
@@ -214,7 +214,7 @@
             this.streetTB.Margin = new System.Windows.Forms.Padding(25, 3, 25, 15);
             this.streetTB.Name = "streetTB";
             this.streetTB.Size = new System.Drawing.Size(232, 27);
-            this.streetTB.TabIndex = 2;
+            this.streetTB.TabIndex = 9;
             this.streetTB.Text = " Street ★";
             this.streetTB.Enter += new System.EventHandler(this.streetTB_Enter);
             this.streetTB.Leave += new System.EventHandler(this.streetTB_Leave);
@@ -227,7 +227,7 @@
             this.cityTB.Margin = new System.Windows.Forms.Padding(25, 3, 25, 15);
             this.cityTB.Name = "cityTB";
             this.cityTB.Size = new System.Drawing.Size(232, 27);
-            this.cityTB.TabIndex = 1;
+            this.cityTB.TabIndex = 8;
             this.cityTB.Text = " City ★";
             this.cityTB.Enter += new System.EventHandler(this.cityTB_Enter);
             this.cityTB.Leave += new System.EventHandler(this.cityTB_Leave);
@@ -240,7 +240,7 @@
             this.countryTB.Margin = new System.Windows.Forms.Padding(25, 3, 25, 15);
             this.countryTB.Name = "countryTB";
             this.countryTB.Size = new System.Drawing.Size(232, 27);
-            this.countryTB.TabIndex = 0;
+            this.countryTB.TabIndex = 7;
             this.countryTB.Text = " Country ★";
             this.countryTB.Enter += new System.EventHandler(this.countryTB_Enter);
             this.countryTB.Leave += new System.EventHandler(this.countryTB_Leave);
@@ -260,19 +260,20 @@
             this.loginBox.Margin = new System.Windows.Forms.Padding(30, 3, 30, 3);
             this.loginBox.Name = "loginBox";
             this.loginBox.Size = new System.Drawing.Size(603, 204);
-            this.loginBox.TabIndex = 3;
+            this.loginBox.TabIndex = 12;
             this.loginBox.TabStop = false;
             this.loginBox.Text = "Login Details";
             // 
             // clearPasswordButton
             // 
-            this.clearPasswordButton.BackColor = System.Drawing.Color.Ivory;
+            this.clearPasswordButton.BackColor = System.Drawing.Color.Snow;
             this.clearPasswordButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.clearPasswordButton.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold);
             this.clearPasswordButton.Location = new System.Drawing.Point(315, 132);
             this.clearPasswordButton.Name = "clearPasswordButton";
             this.clearPasswordButton.Size = new System.Drawing.Size(256, 44);
             this.clearPasswordButton.TabIndex = 3;
+            this.clearPasswordButton.TabStop = false;
             this.clearPasswordButton.Text = "Clear password";
             this.clearPasswordButton.UseVisualStyleBackColor = false;
             this.clearPasswordButton.Click += new System.EventHandler(this.clearPasswordButton_Click);
@@ -302,13 +303,13 @@
             // 
             // generateUsernameButton
             // 
-            this.generateUsernameButton.BackColor = System.Drawing.Color.Ivory;
+            this.generateUsernameButton.BackColor = System.Drawing.Color.Snow;
             this.generateUsernameButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.generateUsernameButton.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold);
             this.generateUsernameButton.Location = new System.Drawing.Point(28, 56);
             this.generateUsernameButton.Name = "generateUsernameButton";
             this.generateUsernameButton.Size = new System.Drawing.Size(260, 44);
-            this.generateUsernameButton.TabIndex = 0;
+            this.generateUsernameButton.TabIndex = 13;
             this.generateUsernameButton.Text = "Generate username";
             this.generateUsernameButton.UseVisualStyleBackColor = false;
             this.generateUsernameButton.Click += new System.EventHandler(this.generateUsernameButton_Click);
@@ -334,7 +335,7 @@
             this.passwordTB_repeat.Location = new System.Drawing.Point(28, 156);
             this.passwordTB_repeat.Name = "passwordTB_repeat";
             this.passwordTB_repeat.Size = new System.Drawing.Size(260, 27);
-            this.passwordTB_repeat.TabIndex = 2;
+            this.passwordTB_repeat.TabIndex = 15;
             this.passwordTB_repeat.Text = " Repeat password ★";
             this.passwordTB_repeat.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.passwordTB_repeat.TextChanged += new System.EventHandler(this.passwordTB_repeat_TextChanged);
@@ -348,7 +349,7 @@
             this.passwordTB_create.Location = new System.Drawing.Point(28, 126);
             this.passwordTB_create.Name = "passwordTB_create";
             this.passwordTB_create.Size = new System.Drawing.Size(260, 27);
-            this.passwordTB_create.TabIndex = 1;
+            this.passwordTB_create.TabIndex = 14;
             this.passwordTB_create.Text = " Enter password ★";
             this.passwordTB_create.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.passwordTB_create.TextChanged += new System.EventHandler(this.passwordTB_create_TextChanged);
@@ -368,7 +369,7 @@
             this.label1.Margin = new System.Windows.Forms.Padding(5, 5, 5, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(696, 67);
-            this.label1.TabIndex = 4;
+            this.label1.TabIndex = 0;
             this.label1.Text = "Create a new account";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
@@ -380,7 +381,7 @@
             this.topLabel2.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.topLabel2.Name = "topLabel2";
             this.topLabel2.Size = new System.Drawing.Size(697, 27);
-            this.topLabel2.TabIndex = 5;
+            this.topLabel2.TabIndex = 1;
             this.topLabel2.Text = "Fields marked with a ★ are mandatory.";
             this.topLabel2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
@@ -394,7 +395,7 @@
             this.groupBox1.Location = new System.Drawing.Point(39, 493);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(603, 137);
-            this.groupBox1.TabIndex = 6;
+            this.groupBox1.TabIndex = 16;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "A few checkboxes";
             // 
@@ -406,11 +407,10 @@
             this.checkBox3.Location = new System.Drawing.Point(28, 99);
             this.checkBox3.Name = "checkBox3";
             this.checkBox3.Size = new System.Drawing.Size(369, 23);
-            this.checkBox3.TabIndex = 2;
+            this.checkBox3.TabIndex = 19;
             this.checkBox3.Text = "I have read the checkboxes above and accept my fate.";
             this.checkBox3.UseVisualStyleBackColor = true;
             this.checkBox3.CheckedChanged += new System.EventHandler(this.checkBox3_CheckedChanged);
-            
             // 
             // checkBox2
             // 
@@ -419,12 +419,11 @@
             this.checkBox2.Location = new System.Drawing.Point(28, 46);
             this.checkBox2.Name = "checkBox2";
             this.checkBox2.Size = new System.Drawing.Size(367, 51);
-            this.checkBox2.TabIndex = 1;
+            this.checkBox2.TabIndex = 18;
             this.checkBox2.Text = "I realise this app has no safety features and any leak of personal data is my own" +
     " problem.";
             this.checkBox2.UseVisualStyleBackColor = true;
             this.checkBox2.CheckedChanged += new System.EventHandler(this.checkBox2_CheckedChanged);
-            
             // 
             // checkBox1
             // 
@@ -435,12 +434,11 @@
             this.checkBox1.Location = new System.Drawing.Point(28, 22);
             this.checkBox1.Name = "checkBox1";
             this.checkBox1.Size = new System.Drawing.Size(406, 23);
-            this.checkBox1.TabIndex = 0;
+            this.checkBox1.TabIndex = 17;
             this.checkBox1.Text = "I hereby confirm I\'m old enough to order stuff and pay for it.";
             this.checkBox1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.checkBox1.UseVisualStyleBackColor = true;
             this.checkBox1.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
-            
             // 
             // form_CreateAccount
             // 
@@ -448,9 +446,9 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(681, 696);
-            this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.topLabel2);
             this.Controls.Add(this.label1);
+            this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.loginBox);
             this.Controls.Add(this.addressBox);
             this.Controls.Add(this.personalBox);
@@ -461,6 +459,7 @@
             this.Name = "form_CreateAccount";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Stern-Geschäft: New Account";
+            this.Load += new System.EventHandler(this.form_CreateAccount_Load);
             this.personalBox.ResumeLayout(false);
             this.personalBox.PerformLayout();
             this.addressBox.ResumeLayout(false);

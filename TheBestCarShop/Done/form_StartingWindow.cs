@@ -27,18 +27,20 @@ namespace TheBestCarShop
         /*
          *  LOGIN SECTION
          */
+
+
+        //WARNING - - - - FOR DEBUGGING ONLY - - - REMOVE IT
         private void enableLogin()
         {
             if (loginTextbox.Text.Length == 0 || passwordTextbox.Text.Length == 0)
             {
-                loginButton.Enabled = false;
-                loginButton.BackColor = Color.Aqua;
+                loginButton.Enabled = true;
+                //loginButton.Enabled = false; //<<this is good
             }
 
             else
             { 
                 loginButton.Enabled = true;
-                loginButton.BackColor = Color.Ivory;
             }
         }
 
@@ -57,6 +59,9 @@ namespace TheBestCarShop
             string inputUsername = loginTextbox.Text;
             string inputPassword = passwordTextbox.Text;
 
+            //inputUsername = "useuse111";
+            //inputPassword = "use";
+
             DatabaseHandler dh = new DatabaseHandler();
             
             bool isDataCorrect =  dh.CheckLoginData(inputUsername, inputPassword);
@@ -65,7 +70,7 @@ namespace TheBestCarShop
            
             if (inputUsername == "Admin" && inputPassword == "nimdA")
             {
-                form_MainAdminWindow MAW = new form_MainAdminWindow();
+                form_MainAdminWindow MAW = new form_MainAdminWindow(inputUsername);
                 this.Hide();
                 MAW.ShowDialog();
                 this.Close();
@@ -73,7 +78,7 @@ namespace TheBestCarShop
 
             else if (isDataCorrect == true && isAdmin == true)
             {
-                form_MainAdminWindow MAW = new form_MainAdminWindow(dh.GetClientDetails(inputUsername));
+                form_MainAdminWindow MAW = new form_MainAdminWindow(inputUsername);
                 this.Hide();
                 MAW.ShowDialog();
                 this.Close();
@@ -81,7 +86,7 @@ namespace TheBestCarShop
 
             else if (isDataCorrect == true)
             {
-                form_MainUserWindow MUW = new form_MainUserWindow(dh.GetClientDetails(inputUsername));
+                form_MainUserWindow MUW = new form_MainUserWindow(inputUsername);
                 this.Hide();
                 MUW.ShowDialog();
                 this.Close();
@@ -90,6 +95,8 @@ namespace TheBestCarShop
             else
             {
                 form_SystemMessage wrongCredentials = new form_SystemMessage("Unable to log in.", "Check your login and password.");
+                loginTextbox.Clear();
+                passwordTextbox.Clear();
             }
         }
 

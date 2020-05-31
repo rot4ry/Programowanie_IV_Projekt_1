@@ -42,7 +42,7 @@
             // 
             // loginButton
             // 
-            this.loginButton.BackColor = System.Drawing.Color.Aqua;
+            this.loginButton.BackColor = System.Drawing.Color.Snow;
             this.loginButton.Enabled = false;
             this.loginButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.loginButton.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -59,7 +59,7 @@
             // 
             // createAccountButton
             // 
-            this.createAccountButton.BackColor = System.Drawing.Color.Ivory;
+            this.createAccountButton.BackColor = System.Drawing.Color.Snow;
             this.createAccountButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.createAccountButton.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold);
             this.createAccountButton.ForeColor = System.Drawing.SystemColors.Highlight;

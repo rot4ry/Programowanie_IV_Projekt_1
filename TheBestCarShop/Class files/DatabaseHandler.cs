@@ -1,14 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.IdentityModel.Tokens;
+using System.Data.SqlClient;
 using System.Linq;
-using System.Runtime.InteropServices;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 using Dapper;
-using Microsoft.Data.SqlClient;
 
 namespace TheBestCarShop
 {
@@ -90,14 +83,14 @@ namespace TheBestCarShop
             }
         }
 
-        public void AddUser(Client client, bool isAdmin = false)
+        public int AddUser(Client client, bool isAdmin = false)
         {
 
             SqlConnection connection = new SqlConnection(this.connectionString);
-            connection.Execute(
-                "INSERT INTO Clients([First name], " +
-                "[Second name], [Company name], [E-mail], [Phone number], [Country], " +
-                "[City], [Street], [Postcode], [Building number], " +
+            int affected = connection.Execute(
+                "INSERT INTO Clients([FirstName], " +
+                "[SecondName], [CompanyName], [Email], [PhoneNumber], [Country], " +
+                "[City], [Street], [Postcode], [BuildingNumber], " +
                 "[Username], [Password],[IsAdmin]) " +
 
                 "VALUES(@firstName, @secondName, @companyName, @email, @phone, " +
@@ -106,7 +99,7 @@ namespace TheBestCarShop
                 new
                 {
                     firstName       = client.FirstName,
-                    secondName      = client.Surname,
+                    secondName      = client.SecondName,
                     companyName     = client.CompanyName,
                     email           = client.Email,
                     phone           = client.PhoneNumber,
@@ -121,23 +114,36 @@ namespace TheBestCarShop
                 });
 
             connection.Close();
+            return affected;
         }
 
         public Client GetClientDetails(string username)
         {
             SqlConnection connection = new SqlConnection(this.connectionString);
-
-            var client = connection.Query<Client>(
-                "SELECT *" +
-                "FROM Clients" +
-                "WHERE Username = @username", new { username = username });
-            if (client.Count() > 1)
-                throw new Exception("Multiple Clients with the same name, logical error.");
-            else
-            {
-                List<Client> list = client.ToList<Client>();
-                return list.First();
-            }
+            
+            string query = @"SELECT 
+                            [ClientID] 
+                            ,[FirstName] 
+                            ,[SecondName] 
+                            ,[CompanyName] 
+                            ,[Email] 
+                            ,[PhoneNumber] 
+                            ,[Country]
+                            ,[City] 
+                            ,[Street] 
+                            ,[Postcode] 
+                            ,[BuildingNumber]
+                            ,[Username] 
+                            ,[Password]
+                            ,[IsAdmin] 
+                            FROM Clients
+                            WHERE Username = @username";
+            
+            Client client = connection.QuerySingle<Client>
+                (query, new { username = username });
+            connection.Close();
+            
+            return client;
         }
     }
 }
