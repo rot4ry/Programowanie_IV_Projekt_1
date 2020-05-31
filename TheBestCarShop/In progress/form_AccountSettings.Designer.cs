@@ -75,6 +75,7 @@
             this.updatePasswordButton.TabStop = false;
             this.updatePasswordButton.Text = "Update";
             this.updatePasswordButton.UseVisualStyleBackColor = false;
+            this.updatePasswordButton.Click += new System.EventHandler(this.updatePasswordButton_Click);
             // 
             // usernameTB
             // 
@@ -229,6 +230,7 @@
             this.buildingUpdateButton.TabIndex = 13;
             this.buildingUpdateButton.Text = "Update";
             this.buildingUpdateButton.UseVisualStyleBackColor = false;
+            this.buildingUpdateButton.Click += new System.EventHandler(this.buildingUpdateButton_Click);
             // 
             // postcodeUpdateButton
             // 
@@ -240,6 +242,7 @@
             this.postcodeUpdateButton.TabIndex = 12;
             this.postcodeUpdateButton.Text = "Update";
             this.postcodeUpdateButton.UseVisualStyleBackColor = false;
+            this.postcodeUpdateButton.Click += new System.EventHandler(this.postcodeUpdateButton_Click);
             // 
             // steetUpdateButton
             // 
@@ -251,6 +254,7 @@
             this.steetUpdateButton.TabIndex = 10;
             this.steetUpdateButton.Text = "Update";
             this.steetUpdateButton.UseVisualStyleBackColor = false;
+            this.steetUpdateButton.Click += new System.EventHandler(this.steetUpdateButton_Click);
             // 
             // cityUpdateButton
             // 
@@ -262,6 +266,7 @@
             this.cityUpdateButton.TabIndex = 9;
             this.cityUpdateButton.Text = "Update";
             this.cityUpdateButton.UseVisualStyleBackColor = false;
+            this.cityUpdateButton.Click += new System.EventHandler(this.cityUpdateButton_Click);
             // 
             // countryUpdateButton
             // 
@@ -273,6 +278,7 @@
             this.countryUpdateButton.TabIndex = 8;
             this.countryUpdateButton.Text = "Update";
             this.countryUpdateButton.UseVisualStyleBackColor = false;
+            this.countryUpdateButton.Click += new System.EventHandler(this.countryUpdateButton_Click);
             // 
             // countryNameTB
             // 
@@ -415,6 +421,7 @@
             this.phoneUpdateButton.TabIndex = 7;
             this.phoneUpdateButton.Text = "Update";
             this.phoneUpdateButton.UseVisualStyleBackColor = false;
+            this.phoneUpdateButton.Click += new System.EventHandler(this.phoneUpdateButton_Click);
             // 
             // emailUpdateButton
             // 
@@ -426,6 +433,7 @@
             this.emailUpdateButton.TabIndex = 6;
             this.emailUpdateButton.Text = "Update";
             this.emailUpdateButton.UseVisualStyleBackColor = false;
+            this.emailUpdateButton.Click += new System.EventHandler(this.emailUpdateButton_Click);
             // 
             // label1
             // 

@@ -15,6 +15,7 @@ namespace TheBestCarShop.In_progress
     public partial class form_AccountSettings : Form
     {
         private Client _accountOwner = new Client();
+        private DatabaseHandler dh = new DatabaseHandler();
         public form_AccountSettings(Client client)
         {
             InitializeComponent();
@@ -30,6 +31,8 @@ namespace TheBestCarShop.In_progress
 
         private void ViewUserDetails()
         {
+            _accountOwner = dh.GetClientDetails(_accountOwner.Username);
+
             firstnameTB.Text        = _accountOwner.FirstName;
             secondnameTB.Text       = _accountOwner.SecondName;
             compNameTB.Text         = _accountOwner.CompanyName;
@@ -72,7 +75,11 @@ namespace TheBestCarShop.In_progress
         {
             TryResetingField(ref ucc._emailClicked, emailTB, _accountOwner.Email);
         }
-
+        private void emailUpdateButton_Click(object sender, EventArgs e)
+        {
+            dh.UpdateClientField("[Email]", emailTB.Text, _accountOwner.Username);
+            ViewUserDetails();
+        }
         //PHONE SECTION
         private void phoneNumberTB_Enter(object sender, EventArgs e)
         {
@@ -82,7 +89,10 @@ namespace TheBestCarShop.In_progress
         {
             TryResetingField(ref ucc._phoneNumberClicked, phoneNumberTB, _accountOwner.PhoneNumber);
         }
-
+        private void phoneUpdateButton_Click(object sender, EventArgs e)
+        {
+            dh.UpdateClientField("[PhoneNumber]", phoneNumberTB.Text, _accountOwner.Username);
+        }
         //COUNTRY SECTION
         private void countryNameTB_Enter(object sender, EventArgs e)
         {
@@ -92,7 +102,10 @@ namespace TheBestCarShop.In_progress
         {
             TryResetingField(ref ucc._countryClicked, countryNameTB, _accountOwner.Country);
         }
-
+        private void countryUpdateButton_Click(object sender, EventArgs e)
+        {
+            dh.UpdateClientField("[Country]", countryNameTB.Text, _accountOwner.Username);
+        }
         //CITY SECTION
         private void cityNameTB_Enter(object sender, EventArgs e)
         {
@@ -102,7 +115,10 @@ namespace TheBestCarShop.In_progress
         {
             TryResetingField(ref ucc._cityClicked, cityNameTB, _accountOwner.City);
         }
-
+        private void cityUpdateButton_Click(object sender, EventArgs e)
+        {
+            dh.UpdateClientField("[City]", cityNameTB.Text, _accountOwner.Username);
+        }
         //STREET SECTION
         private void streetNameTB_Enter(object sender, EventArgs e)
         {
@@ -112,7 +128,10 @@ namespace TheBestCarShop.In_progress
         {
             TryResetingField(ref ucc._streetClicked, streetNameTB, _accountOwner.Street);
         }
-
+        private void steetUpdateButton_Click(object sender, EventArgs e)
+        {
+            dh.UpdateClientField("[Street]", streetNameTB.Text, _accountOwner.Username);
+        }
         //POSTCODE SECTION
         private void postcodeNumberTB_Enter(object sender, EventArgs e)
         {
@@ -122,7 +141,10 @@ namespace TheBestCarShop.In_progress
         {
             TryResetingField(ref ucc._postcodeClicked, postcodeNumberTB, _accountOwner.Postcode);
         }
-
+        private void postcodeUpdateButton_Click(object sender, EventArgs e)
+        {
+            dh.UpdateClientField("[Postcode]", postcodeNumberTB.Text, _accountOwner.Username);
+        }
         //BUILDING NUMBER SECTION
         private void buildingNumberTB_Enter(object sender, EventArgs e)
         {
@@ -132,8 +154,20 @@ namespace TheBestCarShop.In_progress
         {
             TryResetingField(ref ucc._buildingNumberClicked, buildingNumberTB, _accountOwner.BuildingNumber);
         }
-
+        private void buildingUpdateButton_Click(object sender, EventArgs e)
+        {
+            dh.UpdateClientField("[BuildingNumber]", buildingNumberTB.Text, _accountOwner.Username);
+        }
         //PASSWORD SECTION: 
+
+        private void updatePasswordButton_Click(object sender, EventArgs e)
+        {
+            if (passwordTB.Text == passwordRepeatTB.Text)
+            {
+                dh.UpdateClientField("[Password]", passwordTB.Text, _accountOwner.Username);
+            }
+        }
+
         //ENTER PASSWORD
         private void passwordTB_Enter(object sender, EventArgs e)
         {

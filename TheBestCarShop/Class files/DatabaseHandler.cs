@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
+using System.Windows.Forms;
 using Dapper;
 
 namespace TheBestCarShop
@@ -141,9 +143,35 @@ namespace TheBestCarShop
             
             Client client = connection.QuerySingle<Client>
                 (query, new { username = username });
-            connection.Close();
             
+            connection.Close();
             return client;
+        }
+
+        public int UpdateClientField(string columnName, string value, string username)
+        {
+            int affected = 0;
+            SqlConnection connection = new SqlConnection(this.connectionString);
+            string update = "UPDATE Clients " +
+                            $"SET {columnName} = @value " +
+                            "WHERE Username = @username ";
+            try
+            {
+                affected = connection.Execute(update, new { value = value, username = username });
+            }
+            catch (Exception DatabaseHandlerException) { Console.WriteLine(DatabaseHandlerException.Message); }
+
+            if (affected == 1)
+            {
+                form_SystemMessage success = new form_SystemMessage("Success!", $"Data has been updated!");
+            }
+            else
+            {
+                form_SystemMessage failure = new form_SystemMessage("Failure!", "Something went wrong.");
+            }
+            
+            connection.Close();
+            return affected;
         }
     }
 }
