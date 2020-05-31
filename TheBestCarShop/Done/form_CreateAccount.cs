@@ -24,6 +24,8 @@ namespace TheBestCarShop
             if( (_Counter.IsReady() == true)                        &&
                 (isUsernameGenerated == true)                       && 
                 (loginTB.Text != DefaultTexts._username)            &&
+                (nameTB.Text != DefaultTexts._name)                 &&
+                (surnameTB.Text!=DefaultTexts._secondName)          &&
                 (passwordTB_create.Text == passwordTB_repeat.Text)  &&
                 (checkBox1.Checked == true)                         &&
                 (checkBox2.Checked == true)                         &&
@@ -125,13 +127,14 @@ namespace TheBestCarShop
             {
                 _fieldClicked = true;
                 textBox.Text = "";
+                EnableCreateAccount();
             }
             else EnableCreateAccount();
         }
 
         private void TryResetingField(ref bool _fieldClicked, TextBox textBox, string _defaultText)
         {
-            if (textBox.Text.Length == 0)
+            if (textBox.Text.Length == 0 || textBox.Text==_defaultText)
             {
                 textBox.Text = _defaultText;
                 _fieldClicked = false;
