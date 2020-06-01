@@ -72,6 +72,7 @@ namespace TheBestCarShop
                 form_SystemMessage wrongCredentials = new form_SystemMessage("Unable to log in.", "Check your login and password.");
                 loginTextbox.Clear();
                 passwordTextbox.Clear();
+                this.ActiveControl = loginTextbox;
             }
         }
 

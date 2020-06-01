@@ -58,17 +58,20 @@
             this.emailUpdateButton = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.deleteAccGB = new System.Windows.Forms.GroupBox();
-            this.checkBox1 = new System.Windows.Forms.CheckBox();
-            this.checkBox2 = new System.Windows.Forms.CheckBox();
-            this.checkBox3 = new System.Windows.Forms.CheckBox();
-            this.checkBox4 = new System.Windows.Forms.CheckBox();
-            this.checkBox5 = new System.Windows.Forms.CheckBox();
-            this.checkBox6 = new System.Windows.Forms.CheckBox();
             this.deleteButton = new System.Windows.Forms.Button();
+            this.checkBox6 = new System.Windows.Forms.CheckBox();
+            this.checkBox5 = new System.Windows.Forms.CheckBox();
+            this.checkBox4 = new System.Windows.Forms.CheckBox();
+            this.checkBox3 = new System.Windows.Forms.CheckBox();
+            this.checkBox2 = new System.Windows.Forms.CheckBox();
+            this.checkBox1 = new System.Windows.Forms.CheckBox();
+            this.logoPicBox = new System.Windows.Forms.PictureBox();
+            this.closeButton = new System.Windows.Forms.Button();
             this.loginBox.SuspendLayout();
             this.addressBox.SuspendLayout();
             this.personalBox.SuspendLayout();
             this.deleteAccGB.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.logoPicBox)).BeginInit();
             this.SuspendLayout();
             // 
             // updatePasswordButton
@@ -456,10 +459,10 @@
             this.label1.Location = new System.Drawing.Point(-8, -4);
             this.label1.Margin = new System.Windows.Forms.Padding(5, 5, 5, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(977, 57);
+            this.label1.Size = new System.Drawing.Size(977, 60);
             this.label1.TabIndex = 27;
-            this.label1.Text = "Update your account details";
-            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.label1.Text = "              Update your account details";
+            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // deleteAccGB
             // 
@@ -479,72 +482,6 @@
             this.deleteAccGB.TabStop = false;
             this.deleteAccGB.Text = "Delete your account";
             // 
-            // checkBox1
-            // 
-            this.checkBox1.AutoSize = true;
-            this.checkBox1.Location = new System.Drawing.Point(28, 22);
-            this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(35, 20);
-            this.checkBox1.TabIndex = 0;
-            this.checkBox1.Text = "I ";
-            this.checkBox1.UseVisualStyleBackColor = true;
-            this.checkBox1.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
-            // 
-            // checkBox2
-            // 
-            this.checkBox2.AutoSize = true;
-            this.checkBox2.Location = new System.Drawing.Point(28, 55);
-            this.checkBox2.Name = "checkBox2";
-            this.checkBox2.Size = new System.Drawing.Size(60, 20);
-            this.checkBox2.TabIndex = 1;
-            this.checkBox2.Text = "want";
-            this.checkBox2.UseVisualStyleBackColor = true;
-            this.checkBox2.CheckedChanged += new System.EventHandler(this.checkBox2_CheckedChanged);
-            // 
-            // checkBox3
-            // 
-            this.checkBox3.AutoSize = true;
-            this.checkBox3.Location = new System.Drawing.Point(28, 85);
-            this.checkBox3.Name = "checkBox3";
-            this.checkBox3.Size = new System.Drawing.Size(41, 20);
-            this.checkBox3.TabIndex = 2;
-            this.checkBox3.Text = "to";
-            this.checkBox3.UseVisualStyleBackColor = true;
-            this.checkBox3.CheckedChanged += new System.EventHandler(this.checkBox3_CheckedChanged);
-            // 
-            // checkBox4
-            // 
-            this.checkBox4.AutoSize = true;
-            this.checkBox4.Location = new System.Drawing.Point(131, 22);
-            this.checkBox4.Name = "checkBox4";
-            this.checkBox4.Size = new System.Drawing.Size(72, 20);
-            this.checkBox4.TabIndex = 3;
-            this.checkBox4.Text = "delete";
-            this.checkBox4.UseVisualStyleBackColor = true;
-            this.checkBox4.CheckedChanged += new System.EventHandler(this.checkBox4_CheckedChanged);
-            // 
-            // checkBox5
-            // 
-            this.checkBox5.AutoSize = true;
-            this.checkBox5.Location = new System.Drawing.Point(131, 55);
-            this.checkBox5.Name = "checkBox5";
-            this.checkBox5.Size = new System.Drawing.Size(46, 20);
-            this.checkBox5.TabIndex = 4;
-            this.checkBox5.Text = "my";
-            this.checkBox5.UseVisualStyleBackColor = true;
-            this.checkBox5.CheckedChanged += new System.EventHandler(this.checkBox5_CheckedChanged);
-            // 
-            // checkBox6
-            // 
-            this.checkBox6.AutoSize = true;
-            this.checkBox6.Location = new System.Drawing.Point(131, 85);
-            this.checkBox6.Name = "checkBox6";
-            this.checkBox6.Size = new System.Drawing.Size(83, 20);
-            this.checkBox6.TabIndex = 5;
-            this.checkBox6.Text = "account";
-            this.checkBox6.UseVisualStyleBackColor = true;
-            this.checkBox6.CheckedChanged += new System.EventHandler(this.checkBox6_CheckedChanged);
-            // 
             // deleteButton
             // 
             this.deleteButton.BackColor = System.Drawing.Color.Red;
@@ -560,12 +497,107 @@
             this.deleteButton.UseVisualStyleBackColor = false;
             this.deleteButton.Click += new System.EventHandler(this.deleteButton_Click);
             // 
+            // checkBox6
+            // 
+            this.checkBox6.AutoSize = true;
+            this.checkBox6.Location = new System.Drawing.Point(131, 85);
+            this.checkBox6.Name = "checkBox6";
+            this.checkBox6.Size = new System.Drawing.Size(83, 20);
+            this.checkBox6.TabIndex = 5;
+            this.checkBox6.Text = "account";
+            this.checkBox6.UseVisualStyleBackColor = true;
+            this.checkBox6.CheckedChanged += new System.EventHandler(this.checkBox6_CheckedChanged);
+            // 
+            // checkBox5
+            // 
+            this.checkBox5.AutoSize = true;
+            this.checkBox5.Location = new System.Drawing.Point(131, 55);
+            this.checkBox5.Name = "checkBox5";
+            this.checkBox5.Size = new System.Drawing.Size(46, 20);
+            this.checkBox5.TabIndex = 4;
+            this.checkBox5.Text = "my";
+            this.checkBox5.UseVisualStyleBackColor = true;
+            this.checkBox5.CheckedChanged += new System.EventHandler(this.checkBox5_CheckedChanged);
+            // 
+            // checkBox4
+            // 
+            this.checkBox4.AutoSize = true;
+            this.checkBox4.Location = new System.Drawing.Point(131, 22);
+            this.checkBox4.Name = "checkBox4";
+            this.checkBox4.Size = new System.Drawing.Size(72, 20);
+            this.checkBox4.TabIndex = 3;
+            this.checkBox4.Text = "delete";
+            this.checkBox4.UseVisualStyleBackColor = true;
+            this.checkBox4.CheckedChanged += new System.EventHandler(this.checkBox4_CheckedChanged);
+            // 
+            // checkBox3
+            // 
+            this.checkBox3.AutoSize = true;
+            this.checkBox3.Location = new System.Drawing.Point(28, 85);
+            this.checkBox3.Name = "checkBox3";
+            this.checkBox3.Size = new System.Drawing.Size(41, 20);
+            this.checkBox3.TabIndex = 2;
+            this.checkBox3.Text = "to";
+            this.checkBox3.UseVisualStyleBackColor = true;
+            this.checkBox3.CheckedChanged += new System.EventHandler(this.checkBox3_CheckedChanged);
+            // 
+            // checkBox2
+            // 
+            this.checkBox2.AutoSize = true;
+            this.checkBox2.Location = new System.Drawing.Point(28, 55);
+            this.checkBox2.Name = "checkBox2";
+            this.checkBox2.Size = new System.Drawing.Size(60, 20);
+            this.checkBox2.TabIndex = 1;
+            this.checkBox2.Text = "want";
+            this.checkBox2.UseVisualStyleBackColor = true;
+            this.checkBox2.CheckedChanged += new System.EventHandler(this.checkBox2_CheckedChanged);
+            // 
+            // checkBox1
+            // 
+            this.checkBox1.AutoSize = true;
+            this.checkBox1.Location = new System.Drawing.Point(28, 22);
+            this.checkBox1.Name = "checkBox1";
+            this.checkBox1.Size = new System.Drawing.Size(35, 20);
+            this.checkBox1.TabIndex = 0;
+            this.checkBox1.Text = "I ";
+            this.checkBox1.UseVisualStyleBackColor = true;
+            this.checkBox1.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
+            // 
+            // logoPicBox
+            // 
+            this.logoPicBox.BackColor = System.Drawing.Color.Transparent;
+            this.logoPicBox.BackgroundImage = global::TheBestCarShop.Properties.Resources.logo_small_color;
+            this.logoPicBox.Location = new System.Drawing.Point(2, 2);
+            this.logoPicBox.Margin = new System.Windows.Forms.Padding(0, 0, 3, 3);
+            this.logoPicBox.Name = "logoPicBox";
+            this.logoPicBox.Size = new System.Drawing.Size(68, 51);
+            this.logoPicBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.logoPicBox.TabIndex = 29;
+            this.logoPicBox.TabStop = false;
+            // 
+            // closeButton
+            // 
+            this.closeButton.BackColor = System.Drawing.Color.Snow;
+            this.closeButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.closeButton.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold);
+            this.closeButton.ForeColor = System.Drawing.SystemColors.Highlight;
+            this.closeButton.Location = new System.Drawing.Point(842, 7);
+            this.closeButton.Name = "closeButton";
+            this.closeButton.Size = new System.Drawing.Size(108, 44);
+            this.closeButton.TabIndex = 16;
+            this.closeButton.TabStop = false;
+            this.closeButton.Text = "Close";
+            this.closeButton.UseVisualStyleBackColor = false;
+            this.closeButton.Click += new System.EventHandler(this.closeButton_Click);
+            // 
             // form_AccountSettings
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(962, 416);
+            this.Controls.Add(this.closeButton);
+            this.Controls.Add(this.logoPicBox);
             this.Controls.Add(this.deleteAccGB);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.loginBox);
@@ -585,6 +617,7 @@
             this.personalBox.PerformLayout();
             this.deleteAccGB.ResumeLayout(false);
             this.deleteAccGB.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.logoPicBox)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -627,5 +660,7 @@
         private System.Windows.Forms.CheckBox checkBox2;
         private System.Windows.Forms.CheckBox checkBox1;
         private System.Windows.Forms.Button deleteButton;
+        private System.Windows.Forms.PictureBox logoPicBox;
+        private System.Windows.Forms.Button closeButton;
     }
 }

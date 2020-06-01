@@ -86,10 +86,11 @@
   <ItemGroup>
     <Compile Include="Class files\Client.cs" />
     <Compile Include="Class files\DatabaseHandler.cs" />
-    <Compile Include="In progress\form_AccountSettings.cs">
+    <Compile Include="Class files\Product.cs" />
+    <Compile Include="Done\form_AccountSettings.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="In progress\form_AccountSettings.Designer.cs">
+    <Compile Include="Done\form_AccountSettings.Designer.cs">
       <DependentUpon>form_AccountSettings.cs</DependentUpon>
     </Compile>
     <Compile Include="To do\form_MyOrders.cs">
@@ -118,10 +119,10 @@
     <Compile Include="In progress\form_MainUserWindow.Designer.cs">
       <DependentUpon>form_MainUserWindow.cs</DependentUpon>
     </Compile>
-    <Compile Include="To do\form_ProductDetailsWindow.cs">
+    <Compile Include="In progress\form_ProductDetailsWindow.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="To do\form_ProductDetailsWindow.Designer.cs">
+    <Compile Include="In progress\form_ProductDetailsWindow.Designer.cs">
       <DependentUpon>form_ProductDetailsWindow.cs</DependentUpon>
     </Compile>
     <Compile Include="Done\form_SystemMessage.cs">
@@ -156,11 +157,14 @@
     <EmbeddedResource Include="Done\form_SystemMessage.resx">
       <DependentUpon>form_SystemMessage.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="In progress\form_AccountSettings.resx">
+    <EmbeddedResource Include="Done\form_AccountSettings.resx">
       <DependentUpon>form_AccountSettings.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="In progress\form_MainUserWindow.resx">
       <DependentUpon>form_MainUserWindow.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="In progress\form_ShopWindow.resx">
+      <DependentUpon>form_ShopWindow.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

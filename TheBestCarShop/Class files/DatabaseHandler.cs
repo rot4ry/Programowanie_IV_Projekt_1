@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
@@ -18,18 +19,83 @@ namespace TheBestCarShop
                     TrustServerCertificate=False;
                     ApplicationIntent=ReadWrite;
                     MultiSubnetFailover=False";
-
         
+        //PRODUCT RELATED METHODS
+        public List<Product> GetAvailableProductsList()
+        {
+            IEnumerable<Product> queryResult;
+            List<Product> availableProductsList = new List<Product>();
+
+            SqlConnection connection = new SqlConnection(this.connectionString);
+            string query = "SELECT * FROM Products WHERE IsAvailable=1";
+
+            try
+            {
+                queryResult = connection.Query<Product>(query);
+                foreach(var item in queryResult)
+                {
+                    availableProductsList.Add((Product)item);
+                }
+                connection.Close();
+                return availableProductsList;
+            }
+            catch (Exception DatabaseHandlerException)
+            {
+                Console.WriteLine(DatabaseHandlerException.Message);
+                return (List<Product>) null;
+            }
+        }
+
+
+
+        //ORDER RELATED METHODS
         public void AddOrder()
         {
             SqlConnection connection = new SqlConnection(this.connectionString);
         }
 
+        //ORDER DETAILS RELATED METHODS
         public void AddOrderDetail()
         {
             SqlConnection connection = new SqlConnection(this.connectionString);
         }
 
+
+
+        //USER RELATED METHODS
+        public int AddUser(Client client, bool isAdmin = false)
+        {
+
+            SqlConnection connection = new SqlConnection(this.connectionString);
+            int affected = connection.Execute(
+                "INSERT INTO Clients([FirstName], " +
+                "[SecondName], [CompanyName], [Email], [PhoneNumber], [Country], " +
+                "[City], [Street], [Postcode], [BuildingNumber], " +
+                "[Username], [Password],[IsAdmin]) " +
+
+                "VALUES(@firstName, @secondName, @companyName, @email, @phone, " +
+                "@country, @city, @street, @postcode, @buildingNumber, @username, " +
+                "@password, @isAdmin)",
+                new
+                {
+                    firstName = client.FirstName,
+                    secondName = client.SecondName,
+                    companyName = client.CompanyName,
+                    email = client.Email,
+                    phone = client.PhoneNumber,
+                    country = client.Country,
+                    city = client.City,
+                    street = client.Street,
+                    postcode = client.Postcode,
+                    buildingNumber = client.BuildingNumber,
+                    username = client.Username,
+                    password = client.Password,
+                    isAdmin = isAdmin
+                });
+
+            connection.Close();
+            return affected;
+        }
         public bool CheckLoginData(string username, string password)
         {
             try
@@ -54,40 +120,6 @@ namespace TheBestCarShop
                 Console.WriteLine("DatabaseHandlerException CheckLoginData");
                 return false;
             }
-        }
-
-        public int AddUser(Client client, bool isAdmin = false)
-        {
-
-            SqlConnection connection = new SqlConnection(this.connectionString);
-            int affected = connection.Execute(
-                "INSERT INTO Clients([FirstName], " +
-                "[SecondName], [CompanyName], [Email], [PhoneNumber], [Country], " +
-                "[City], [Street], [Postcode], [BuildingNumber], " +
-                "[Username], [Password],[IsAdmin]) " +
-
-                "VALUES(@firstName, @secondName, @companyName, @email, @phone, " +
-                "@country, @city, @street, @postcode, @buildingNumber, @username, " +
-                "@password, @isAdmin)",
-                new
-                {
-                    firstName       = client.FirstName,
-                    secondName      = client.SecondName,
-                    companyName     = client.CompanyName,
-                    email           = client.Email,
-                    phone           = client.PhoneNumber,
-                    country         = client.Country,
-                    city            = client.City,
-                    street          = client.Street,
-                    postcode        = client.Postcode,
-                    buildingNumber  = client.BuildingNumber,
-                    username        = client.Username,
-                    password        = client.Password,
-                    isAdmin         = isAdmin
-                });
-
-            connection.Close();
-            return affected;
         }
 
         public Client GetClientDetails(string username)
@@ -118,9 +150,9 @@ namespace TheBestCarShop
                 connection.Close();
                 return client;
             }
-            catch(Exception DapperException)
+            catch(Exception DatabaseHandlerException)
             {
-                Console.WriteLine(DapperException.Message);
+                Console.WriteLine(DatabaseHandlerException.Message);
                 return (Client)null;
             }
         }

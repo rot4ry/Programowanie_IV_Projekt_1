@@ -310,5 +310,10 @@ namespace TheBestCarShop.In_progress
                 form_SystemMessage failure = new form_SystemMessage("Failure!", "Something went wrong.", this);
             }
         }
+
+        private void closeButton_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 }

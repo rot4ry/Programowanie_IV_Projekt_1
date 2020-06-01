@@ -14,7 +14,7 @@ namespace TheBestCarShop
 {
     public partial class form_MainUserWindow : Form
     {
-        private static Client _accountOwner = new Client();
+        private Client _accountOwner = new Client();
         private DatabaseHandler dh = new DatabaseHandler();
 
         private Stopwatch loggedInTime = new Stopwatch();
@@ -45,7 +45,8 @@ namespace TheBestCarShop
                 $"{tab}{_accountOwner.FirstName}, I am your father.",
                 $"{tab}Servus, {_accountOwner.FirstName}!",
                 $"{tab}こんにちは, {_accountOwner.FirstName}-さん!",
-                $"{tab}イースターエッグ" //easter eggs
+                $"{tab}イースターエッグ", //easter eggs
+                $"Gas, gas, gas...🚗 "
             };
             welcomeLabel.Text = welcomeWords[new Random().Next(0, welcomeWords.Length)];
         }
@@ -75,7 +76,7 @@ namespace TheBestCarShop
         private void shopButton_Click(object sender, EventArgs e)
         {
             //[TODO] working shop window
-            form_ShopWindow shopWindow = new form_ShopWindow();
+            form_ShopWindow shopWindow = new form_ShopWindow(_accountOwner);
             shopWindow.ShowDialog();
         }
 
