@@ -46,7 +46,7 @@ namespace TheBestCarShop
                 $"{tab}Servus, {_accountOwner.FirstName}!",
                 $"{tab}こんにちは, {_accountOwner.FirstName}-さん!",
                 $"{tab}イースターエッグ", //easter eggs
-                $"Gas, gas, gas...🚗 "
+                $"{tab}Gas, gas, gas...🚗 "
             };
             welcomeLabel.Text = welcomeWords[new Random().Next(0, welcomeWords.Length)];
         }
@@ -127,7 +127,6 @@ namespace TheBestCarShop
                 return 0;
             }
         }
-
-        //shop access, shopping kart
     }
 }
+
