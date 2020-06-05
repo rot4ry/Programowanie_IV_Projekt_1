@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Data;
+using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
 
@@ -540,9 +542,11 @@ namespace TheBestCarShop
                 return (List<Product>)null;
             }
         }
-
+        
         private void ViewSearchResult(List<Product> searchResult)
         {
+            AddColumns();
+
             if (searchResult != null)
             {
                 foreach (Product product in searchResult)
@@ -562,9 +566,59 @@ namespace TheBestCarShop
             }
         }
 
+        private void ReplaceColumnWithButtons(string name, string text)
+        {
+            DataGridViewButtonColumn buttonColumn = new DataGridViewButtonColumn();
+            {
+                buttonColumn.Name = name;
+                buttonColumn.HeaderText = "";
+                buttonColumn.Text = text;
+                buttonColumn.UseColumnTextForButtonValue = true;
+                buttonColumn.Width = 152;
 
+                buttonColumn.DefaultCellStyle = new DataGridViewCellStyle()
+                {
+                    //WELCOME TO THE HOUSE OF FUN
+                    BackColor   = stylingButton.BackColor,
+                    ForeColor   = stylingButton.ForeColor,
+                    Font        = stylingButton.Font,
+                    Alignment = DataGridViewContentAlignment.MiddleCenter,
+                };
+                this.searchResultView.Columns.Add(buttonColumn);
+            }
+        }
 
-        //Combo boxes' events => validating and setting up filters
+        private void AddColumns()
+        {
+            if(searchResultView.Columns["details"] == null)
+            {
+                searchResultView.Columns.Remove("detailsEmpty");
+                ReplaceColumnWithButtons("details", "Show details");
+            }
+            if(searchResultView.Columns["toKart"] == null)
+            {
+                searchResultView.Columns.Remove("kartEmpty");
+                ReplaceColumnWithButtons("toKart", "Add to kart");
+            }
+        }
+        //Event handler for buttons in the DataGridView
+        private void searchResultView_CellClick(object sender, DataGridViewCellEventArgs e)
+        {   
+            if(e.ColumnIndex == searchResultView.Columns["details"].Index)
+            {
+                int productID = (int)searchResultView[0, e.RowIndex].Value;
+                form_ProductDetailsWindow productDetails = new form_ProductDetailsWindow(productID);
+                productDetails.ShowDialog();
+            }
+
+            else if(e.ColumnIndex == searchResultView.Columns["toKart"].Index)
+            {
+                int productID = (int)searchResultView[0, e.RowIndex].Value;
+                //place for a shopping kart list, then pushed to shopping kart form
+            }
+        }
+
+        //Combo boxes' event handlers => validating and setting up filters
         //[BRAND]
         private void brandCBox_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -637,7 +691,6 @@ namespace TheBestCarShop
         {
             ValidatePrices();
         }
-
     }
 }
 

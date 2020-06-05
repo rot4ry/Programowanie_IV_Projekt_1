@@ -23,7 +23,7 @@ namespace TheBestCarShop
         public string Category { get; set; }
         public string Manufacturer { get; set; }
         public string PartCode { get; set; }
-        public bool IsAvailable { get; set; }   //invisible for the user as a value, but might be enabled/disabled
-        public int QtAvailable { get; set; }    //what bout this one?
+        public bool IsAvailable { get; set; }
+        public int Quantity { get; set; }
     }
 }

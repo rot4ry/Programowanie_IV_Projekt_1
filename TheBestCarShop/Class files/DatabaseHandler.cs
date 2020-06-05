@@ -26,11 +26,11 @@ namespace TheBestCarShop
             IEnumerable<Product> queryResult;
             List<Product> availableProductsList = new List<Product>();
 
-            SqlConnection connection = new SqlConnection(this.connectionString);
             string query = "SELECT * FROM Products WHERE IsAvailable=1";
 
             try
             {
+                SqlConnection connection = new SqlConnection(this.connectionString);
                 queryResult = connection.Query<Product>(query);
                 foreach(var item in queryResult)
                 {
@@ -45,8 +45,24 @@ namespace TheBestCarShop
                 return (List<Product>) null;
             }
         }
+        
+        public Product GetProduct(int id)
+        {
+            string query = "SELECT * FROM Products WHERE ProductID = @id";
+            try
+            {
+                SqlConnection connection = new SqlConnection(this.connectionString);
+                Product product = connection.QuerySingle<Product>(query, new { id = id });
+                connection.Close();
 
-
+                return product;
+            }
+            catch(Exception DatabaseHandlerException)
+            {
+                Console.WriteLine(DatabaseHandlerException.Message);
+                return (Product)null;
+            }
+        }
 
         //ORDER RELATED METHODS
         public void AddOrder()

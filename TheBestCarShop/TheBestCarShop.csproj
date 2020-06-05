@@ -119,10 +119,10 @@
     <Compile Include="In progress\form_MainUserWindow.Designer.cs">
       <DependentUpon>form_MainUserWindow.cs</DependentUpon>
     </Compile>
-    <Compile Include="In progress\form_ProductDetailsWindow.cs">
+    <Compile Include="Done\form_ProductDetailsWindow.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="In progress\form_ProductDetailsWindow.Designer.cs">
+    <Compile Include="Done\form_ProductDetailsWindow.Designer.cs">
       <DependentUpon>form_ProductDetailsWindow.cs</DependentUpon>
     </Compile>
     <Compile Include="Done\form_SystemMessage.cs">
@@ -131,10 +131,10 @@
     <Compile Include="Done\form_SystemMessage.Designer.cs">
       <DependentUpon>form_SystemMessage.cs</DependentUpon>
     </Compile>
-    <Compile Include="To do\form_ShoppingKart.cs">
+    <Compile Include="In progress\form_ShoppingKart.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="To do\form_ShoppingKart.Designer.cs">
+    <Compile Include="In progress\form_ShoppingKart.Designer.cs">
       <DependentUpon>form_ShoppingKart.cs</DependentUpon>
     </Compile>
     <Compile Include="In progress\form_ShopWindow.cs">
@@ -163,7 +163,7 @@
     <EmbeddedResource Include="In progress\form_MainUserWindow.resx">
       <DependentUpon>form_MainUserWindow.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="In progress\form_ProductDetailsWindow.resx">
+    <EmbeddedResource Include="Done\form_ProductDetailsWindow.resx">
       <DependentUpon>form_ProductDetailsWindow.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="In progress\form_ShopWindow.resx">

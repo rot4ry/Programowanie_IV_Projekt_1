@@ -59,8 +59,9 @@
             this.partName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.partManufacturer = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.partPrice = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.partDetails = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.partAddToKart = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.detailsEmpty = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.kartEmpty = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.stylingButton = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.logoPicBox)).BeginInit();
             this.topBarsPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.searchResultView)).BeginInit();
@@ -110,6 +111,7 @@
             this.topBarsPanel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.topBarsPanel.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            this.topBarsPanel.Controls.Add(this.stylingButton);
             this.topBarsPanel.Controls.Add(this.searchButton);
             this.topBarsPanel.Controls.Add(this.clearButtons);
             this.topBarsPanel.Controls.Add(this.priceToCBox);
@@ -176,7 +178,6 @@
             this.priceToCBox.Name = "priceToCBox";
             this.priceToCBox.Size = new System.Drawing.Size(233, 24);
             this.priceToCBox.TabIndex = 22;
-            
             // 
             // priceFromCBox
             // 
@@ -206,7 +207,6 @@
             this.manufacturerCBox.Name = "manufacturerCBox";
             this.manufacturerCBox.Size = new System.Drawing.Size(233, 24);
             this.manufacturerCBox.TabIndex = 20;
-            
             // 
             // categoryCBox
             // 
@@ -237,7 +237,6 @@
             this.lastYearCBox.Name = "lastYearCBox";
             this.lastYearCBox.Size = new System.Drawing.Size(233, 24);
             this.lastYearCBox.TabIndex = 18;
-            
             // 
             // firstYearCBox
             // 
@@ -413,8 +412,6 @@
             this.searchResultView.AllowUserToResizeColumns = false;
             this.searchResultView.AllowUserToResizeRows = false;
             this.searchResultView.BackgroundColor = System.Drawing.Color.White;
-            this.searchResultView.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.searchResultView.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.ControlLight;
             dataGridViewCellStyle1.Font = new System.Drawing.Font("Bahnschrift SemiCondensed", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -430,8 +427,8 @@
             this.partName,
             this.partManufacturer,
             this.partPrice,
-            this.partDetails,
-            this.partAddToKart});
+            this.detailsEmpty,
+            this.kartEmpty});
             this.searchResultView.GridColor = System.Drawing.SystemColors.WindowFrame;
             this.searchResultView.Location = new System.Drawing.Point(21, 16);
             this.searchResultView.Margin = new System.Windows.Forms.Padding(30, 20, 30, 50);
@@ -442,6 +439,7 @@
             this.searchResultView.RowTemplate.Height = 30;
             this.searchResultView.Size = new System.Drawing.Size(1335, 478);
             this.searchResultView.TabIndex = 8;
+            this.searchResultView.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.searchResultView_CellClick);
             // 
             // panel1
             // 
@@ -461,51 +459,67 @@
             // 
             // partCategory
             // 
+            this.partCategory.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
             this.partCategory.FillWeight = 39.78316F;
             this.partCategory.HeaderText = "Category";
             this.partCategory.Name = "partCategory";
             this.partCategory.ReadOnly = true;
-            this.partCategory.Width = 180;
+            this.partCategory.Width = 175;
             // 
             // partName
             // 
-            this.partName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.partName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
             this.partName.FillWeight = 509.3365F;
             this.partName.HeaderText = "Name";
             this.partName.Name = "partName";
             this.partName.ReadOnly = true;
+            this.partName.Width = 470;
             // 
             // partManufacturer
             // 
+            this.partManufacturer.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
             this.partManufacturer.FillWeight = 16.72323F;
             this.partManufacturer.HeaderText = "Manufacturer";
             this.partManufacturer.Name = "partManufacturer";
             this.partManufacturer.ReadOnly = true;
-            this.partManufacturer.Width = 250;
+            this.partManufacturer.Width = 225;
             // 
             // partPrice
             // 
+            this.partPrice.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
             this.partPrice.FillWeight = 9.496284F;
             this.partPrice.HeaderText = "Price";
             this.partPrice.Name = "partPrice";
             this.partPrice.ReadOnly = true;
-            this.partPrice.Width = 120;
+            this.partPrice.Width = 140;
             // 
-            // partDetails
+            // detailsEmpty
             // 
-            this.partDetails.FillWeight = 3.254479F;
-            this.partDetails.HeaderText = "";
-            this.partDetails.Name = "partDetails";
-            this.partDetails.ReadOnly = true;
-            this.partDetails.Width = 150;
+            this.detailsEmpty.HeaderText = "";
+            this.detailsEmpty.Name = "detailsEmpty";
+            this.detailsEmpty.ReadOnly = true;
+            this.detailsEmpty.Width = 150;
             // 
-            // partAddToKart
+            // kartEmpty
             // 
-            this.partAddToKart.FillWeight = 11.0812F;
-            this.partAddToKart.HeaderText = "";
-            this.partAddToKart.Name = "partAddToKart";
-            this.partAddToKart.ReadOnly = true;
-            this.partAddToKart.Width = 150;
+            this.kartEmpty.HeaderText = "";
+            this.kartEmpty.Name = "kartEmpty";
+            this.kartEmpty.ReadOnly = true;
+            this.kartEmpty.Width = 150;
+            // 
+            // stylingButton
+            // 
+            this.stylingButton.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.stylingButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.stylingButton.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold);
+            this.stylingButton.ForeColor = System.Drawing.Color.SteelBlue;
+            this.stylingButton.Location = new System.Drawing.Point(847, 12);
+            this.stylingButton.Name = "stylingButton";
+            this.stylingButton.Size = new System.Drawing.Size(123, 38);
+            this.stylingButton.TabIndex = 25;
+            this.stylingButton.Text = "stylingButton";
+            this.stylingButton.UseVisualStyleBackColor = false;
+            this.stylingButton.Visible = false;
             // 
             // form_ShopWindow
             // 
@@ -563,7 +577,8 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn partName;
         private System.Windows.Forms.DataGridViewTextBoxColumn partManufacturer;
         private System.Windows.Forms.DataGridViewTextBoxColumn partPrice;
-        private System.Windows.Forms.DataGridViewTextBoxColumn partDetails;
-        private System.Windows.Forms.DataGridViewTextBoxColumn partAddToKart;
+        private System.Windows.Forms.DataGridViewButtonColumn detailsEmpty;
+        private System.Windows.Forms.DataGridViewButtonColumn kartEmpty;
+        private System.Windows.Forms.Button stylingButton;
     }
 }
