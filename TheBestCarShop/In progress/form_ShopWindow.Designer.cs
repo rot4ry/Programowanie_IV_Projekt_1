@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.closeButton = new System.Windows.Forms.Button();
             this.titleLabel = new System.Windows.Forms.Label();
             this.logoPicBox = new System.Windows.Forms.PictureBox();
@@ -51,8 +52,19 @@
             this.label1 = new System.Windows.Forms.Label();
             this.shoppingKartButton = new System.Windows.Forms.Button();
             this.label4 = new System.Windows.Forms.Label();
+            this.searchResultView = new System.Windows.Forms.DataGridView();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.partID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.partCategory = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.partName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.partManufacturer = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.partPrice = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.partDetails = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.partAddToKart = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.logoPicBox)).BeginInit();
             this.topBarsPanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.searchResultView)).BeginInit();
+            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // closeButton
@@ -137,6 +149,7 @@
             this.searchButton.TabIndex = 24;
             this.searchButton.Text = "Search";
             this.searchButton.UseVisualStyleBackColor = false;
+            this.searchButton.Click += new System.EventHandler(this.searchButton_Click);
             // 
             // clearButtons
             // 
@@ -154,89 +167,126 @@
             // 
             // priceToCBox
             // 
+            this.priceToCBox.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.priceToCBox.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.priceToCBox.Font = new System.Drawing.Font("Bahnschrift", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.priceToCBox.FormattingEnabled = true;
             this.priceToCBox.Location = new System.Drawing.Point(844, 160);
             this.priceToCBox.Margin = new System.Windows.Forms.Padding(20, 3, 10, 3);
             this.priceToCBox.Name = "priceToCBox";
-            this.priceToCBox.Size = new System.Drawing.Size(233, 21);
+            this.priceToCBox.Size = new System.Drawing.Size(233, 24);
             this.priceToCBox.TabIndex = 22;
+            
             // 
             // priceFromCBox
             // 
+            this.priceFromCBox.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.priceFromCBox.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.priceFromCBox.Font = new System.Drawing.Font("Bahnschrift", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.priceFromCBox.FormattingEnabled = true;
-            this.priceFromCBox.ItemHeight = 13;
+            this.priceFromCBox.ItemHeight = 16;
             this.priceFromCBox.Location = new System.Drawing.Point(571, 160);
             this.priceFromCBox.Margin = new System.Windows.Forms.Padding(20, 3, 20, 3);
             this.priceFromCBox.Name = "priceFromCBox";
-            this.priceFromCBox.Size = new System.Drawing.Size(233, 21);
+            this.priceFromCBox.Size = new System.Drawing.Size(233, 24);
             this.priceFromCBox.TabIndex = 21;
             this.priceFromCBox.SelectedIndexChanged += new System.EventHandler(this.priceFromCBox_SelectedIndexChanged);
+            this.priceFromCBox.TextChanged += new System.EventHandler(this.priceFromCBox_TextChanged);
+            this.priceFromCBox.Leave += new System.EventHandler(this.priceFromCBox_Leave);
             // 
             // manufacturerCBox
             // 
+            this.manufacturerCBox.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.manufacturerCBox.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.manufacturerCBox.Font = new System.Drawing.Font("Bahnschrift", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.manufacturerCBox.FormattingEnabled = true;
-            this.manufacturerCBox.ItemHeight = 13;
+            this.manufacturerCBox.ItemHeight = 16;
             this.manufacturerCBox.Location = new System.Drawing.Point(298, 160);
             this.manufacturerCBox.Margin = new System.Windows.Forms.Padding(20, 3, 20, 3);
             this.manufacturerCBox.Name = "manufacturerCBox";
-            this.manufacturerCBox.Size = new System.Drawing.Size(233, 21);
+            this.manufacturerCBox.Size = new System.Drawing.Size(233, 24);
             this.manufacturerCBox.TabIndex = 20;
+            
             // 
             // categoryCBox
             // 
+            this.categoryCBox.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.categoryCBox.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.categoryCBox.Font = new System.Drawing.Font("Bahnschrift", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.categoryCBox.FormattingEnabled = true;
-            this.categoryCBox.ItemHeight = 13;
+            this.categoryCBox.ItemHeight = 16;
             this.categoryCBox.Location = new System.Drawing.Point(25, 160);
             this.categoryCBox.Margin = new System.Windows.Forms.Padding(10, 3, 20, 3);
             this.categoryCBox.Name = "categoryCBox";
-            this.categoryCBox.Size = new System.Drawing.Size(233, 21);
+            this.categoryCBox.Size = new System.Drawing.Size(233, 24);
             this.categoryCBox.TabIndex = 19;
             this.categoryCBox.SelectedIndexChanged += new System.EventHandler(this.categoryCBox_SelectedIndexChanged);
+            this.categoryCBox.TextChanged += new System.EventHandler(this.categoryCBox_TextChanged);
+            this.categoryCBox.Leave += new System.EventHandler(this.categoryCBox_Leave);
             // 
             // lastYearCBox
             // 
+            this.lastYearCBox.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.lastYearCBox.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.lastYearCBox.Font = new System.Drawing.Font("Bahnschrift", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lastYearCBox.FormattingEnabled = true;
             this.lastYearCBox.Location = new System.Drawing.Point(844, 99);
             this.lastYearCBox.Margin = new System.Windows.Forms.Padding(20, 3, 10, 3);
             this.lastYearCBox.MaxDropDownItems = 5;
             this.lastYearCBox.MaxLength = 4;
             this.lastYearCBox.Name = "lastYearCBox";
-            this.lastYearCBox.Size = new System.Drawing.Size(233, 21);
+            this.lastYearCBox.Size = new System.Drawing.Size(233, 24);
             this.lastYearCBox.TabIndex = 18;
+            
             // 
             // firstYearCBox
             // 
+            this.firstYearCBox.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.firstYearCBox.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.firstYearCBox.Font = new System.Drawing.Font("Bahnschrift", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.firstYearCBox.FormattingEnabled = true;
-            this.firstYearCBox.ItemHeight = 13;
+            this.firstYearCBox.ItemHeight = 16;
             this.firstYearCBox.Location = new System.Drawing.Point(571, 99);
             this.firstYearCBox.Margin = new System.Windows.Forms.Padding(20, 3, 20, 3);
             this.firstYearCBox.MaxLength = 4;
             this.firstYearCBox.Name = "firstYearCBox";
-            this.firstYearCBox.Size = new System.Drawing.Size(233, 21);
+            this.firstYearCBox.Size = new System.Drawing.Size(233, 24);
             this.firstYearCBox.TabIndex = 17;
             this.firstYearCBox.SelectedIndexChanged += new System.EventHandler(this.firstYearCBox_SelectedIndexChanged);
+            this.firstYearCBox.TextChanged += new System.EventHandler(this.firstYearCBox_TextChanged);
+            this.firstYearCBox.Leave += new System.EventHandler(this.firstYearCBox_Leave);
             // 
             // modelCBox
             // 
+            this.modelCBox.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.modelCBox.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.modelCBox.Font = new System.Drawing.Font("Bahnschrift", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.modelCBox.FormattingEnabled = true;
-            this.modelCBox.ItemHeight = 13;
+            this.modelCBox.ItemHeight = 16;
             this.modelCBox.Location = new System.Drawing.Point(298, 99);
             this.modelCBox.Margin = new System.Windows.Forms.Padding(20, 3, 20, 3);
             this.modelCBox.Name = "modelCBox";
-            this.modelCBox.Size = new System.Drawing.Size(233, 21);
+            this.modelCBox.Size = new System.Drawing.Size(233, 24);
             this.modelCBox.TabIndex = 16;
             this.modelCBox.SelectedIndexChanged += new System.EventHandler(this.modelCBox_SelectedIndexChanged);
+            this.modelCBox.TextChanged += new System.EventHandler(this.modelCBox_TextChanged);
+            this.modelCBox.Leave += new System.EventHandler(this.modelCBox_Leave);
             // 
             // brandCBox
             // 
+            this.brandCBox.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.brandCBox.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.brandCBox.Font = new System.Drawing.Font("Bahnschrift", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.brandCBox.FormattingEnabled = true;
-            this.brandCBox.ItemHeight = 13;
+            this.brandCBox.ItemHeight = 16;
             this.brandCBox.Location = new System.Drawing.Point(25, 99);
             this.brandCBox.Margin = new System.Windows.Forms.Padding(10, 3, 20, 3);
             this.brandCBox.Name = "brandCBox";
-            this.brandCBox.Size = new System.Drawing.Size(233, 21);
+            this.brandCBox.Size = new System.Drawing.Size(233, 24);
             this.brandCBox.TabIndex = 9;
             this.brandCBox.SelectedIndexChanged += new System.EventHandler(this.brandCBox_SelectedIndexChanged);
+            this.brandCBox.TextUpdate += new System.EventHandler(this.brandCBox_TextUpdate);
+            this.brandCBox.Leave += new System.EventHandler(this.brandCBox_Leave);
             // 
             // label8
             // 
@@ -356,12 +406,114 @@
             this.label4.Text = "Last year of production";
             this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
+            // searchResultView
+            // 
+            this.searchResultView.AllowUserToAddRows = false;
+            this.searchResultView.AllowUserToDeleteRows = false;
+            this.searchResultView.AllowUserToResizeColumns = false;
+            this.searchResultView.AllowUserToResizeRows = false;
+            this.searchResultView.BackgroundColor = System.Drawing.Color.White;
+            this.searchResultView.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.searchResultView.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.ControlLight;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Bahnschrift SemiCondensed", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.ButtonShadow;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.searchResultView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            this.searchResultView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.searchResultView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.partID,
+            this.partCategory,
+            this.partName,
+            this.partManufacturer,
+            this.partPrice,
+            this.partDetails,
+            this.partAddToKart});
+            this.searchResultView.GridColor = System.Drawing.SystemColors.WindowFrame;
+            this.searchResultView.Location = new System.Drawing.Point(21, 16);
+            this.searchResultView.Margin = new System.Windows.Forms.Padding(30, 20, 30, 50);
+            this.searchResultView.Name = "searchResultView";
+            this.searchResultView.ReadOnly = true;
+            this.searchResultView.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
+            this.searchResultView.RowHeadersVisible = false;
+            this.searchResultView.RowTemplate.Height = 30;
+            this.searchResultView.Size = new System.Drawing.Size(1335, 478);
+            this.searchResultView.TabIndex = 8;
+            // 
+            // panel1
+            // 
+            this.panel1.BackColor = System.Drawing.Color.LightGray;
+            this.panel1.Controls.Add(this.searchResultView);
+            this.panel1.Location = new System.Drawing.Point(-6, 200);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(1386, 517);
+            this.panel1.TabIndex = 9;
+            // 
+            // partID
+            // 
+            this.partID.HeaderText = "";
+            this.partID.Name = "partID";
+            this.partID.ReadOnly = true;
+            this.partID.Visible = false;
+            // 
+            // partCategory
+            // 
+            this.partCategory.FillWeight = 39.78316F;
+            this.partCategory.HeaderText = "Category";
+            this.partCategory.Name = "partCategory";
+            this.partCategory.ReadOnly = true;
+            this.partCategory.Width = 180;
+            // 
+            // partName
+            // 
+            this.partName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.partName.FillWeight = 509.3365F;
+            this.partName.HeaderText = "Name";
+            this.partName.Name = "partName";
+            this.partName.ReadOnly = true;
+            // 
+            // partManufacturer
+            // 
+            this.partManufacturer.FillWeight = 16.72323F;
+            this.partManufacturer.HeaderText = "Manufacturer";
+            this.partManufacturer.Name = "partManufacturer";
+            this.partManufacturer.ReadOnly = true;
+            this.partManufacturer.Width = 250;
+            // 
+            // partPrice
+            // 
+            this.partPrice.FillWeight = 9.496284F;
+            this.partPrice.HeaderText = "Price";
+            this.partPrice.Name = "partPrice";
+            this.partPrice.ReadOnly = true;
+            this.partPrice.Width = 120;
+            // 
+            // partDetails
+            // 
+            this.partDetails.FillWeight = 3.254479F;
+            this.partDetails.HeaderText = "";
+            this.partDetails.Name = "partDetails";
+            this.partDetails.ReadOnly = true;
+            this.partDetails.Width = 150;
+            // 
+            // partAddToKart
+            // 
+            this.partAddToKart.FillWeight = 11.0812F;
+            this.partAddToKart.HeaderText = "";
+            this.partAddToKart.Name = "partAddToKart";
+            this.partAddToKart.ReadOnly = true;
+            this.partAddToKart.Width = 150;
+            // 
             // form_ShopWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(1370, 1041);
+            this.ClientSize = new System.Drawing.Size(1370, 729);
+            this.Controls.Add(this.panel1);
             this.Controls.Add(this.topBarsPanel);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
@@ -373,6 +525,8 @@
             this.Load += new System.EventHandler(this.form_ShopWindow_Load);
             ((System.ComponentModel.ISupportInitialize)(this.logoPicBox)).EndInit();
             this.topBarsPanel.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.searchResultView)).EndInit();
+            this.panel1.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -402,5 +556,14 @@
         private System.Windows.Forms.ComboBox modelCBox;
         private System.Windows.Forms.Button searchButton;
         private System.Windows.Forms.Button clearButtons;
+        private System.Windows.Forms.DataGridView searchResultView;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn partID;
+        private System.Windows.Forms.DataGridViewTextBoxColumn partCategory;
+        private System.Windows.Forms.DataGridViewTextBoxColumn partName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn partManufacturer;
+        private System.Windows.Forms.DataGridViewTextBoxColumn partPrice;
+        private System.Windows.Forms.DataGridViewTextBoxColumn partDetails;
+        private System.Windows.Forms.DataGridViewTextBoxColumn partAddToKart;
     }
 }

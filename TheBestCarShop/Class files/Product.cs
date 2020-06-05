@@ -19,7 +19,7 @@ namespace TheBestCarShop
         public decimal Price { get; set; }
 
         //product details
-        public string PartName { get; set; }
+        public string Name { get; set; }
         public string Category { get; set; }
         public string Manufacturer { get; set; }
         public string PartCode { get; set; }

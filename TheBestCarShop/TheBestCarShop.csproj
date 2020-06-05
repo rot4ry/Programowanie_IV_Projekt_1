@@ -163,6 +163,9 @@
     <EmbeddedResource Include="In progress\form_MainUserWindow.resx">
       <DependentUpon>form_MainUserWindow.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="In progress\form_ProductDetailsWindow.resx">
+      <DependentUpon>form_ProductDetailsWindow.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="In progress\form_ShopWindow.resx">
       <DependentUpon>form_ShopWindow.cs</DependentUpon>
     </EmbeddedResource>
@@ -175,6 +178,7 @@
       <DependentUpon>form_StartingWindow.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />
+    <None Include="Properties\DataSources\form_ShopWindow.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
