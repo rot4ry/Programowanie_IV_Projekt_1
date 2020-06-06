@@ -18,8 +18,6 @@ namespace TheBestCarShop
         private DatabaseHandler dh = new DatabaseHandler();
 
         private Stopwatch loggedInTime = new Stopwatch();
-        private bool loggedIn { get; set; }
-        
         
         public form_MainUserWindow(string username)
         {
@@ -27,7 +25,13 @@ namespace TheBestCarShop
             _accountOwner = dh.GetClientDetails(username);
             SetWelcomeLabel();
             loggedInTime.Start();
-            loggedIn = true;
+        }
+
+        private void form_MainUserWindow_Load(object sender, EventArgs e)
+        {
+            //adds an artificial shopping kart as an unconfirmed order,
+            //deleted while logging out
+            dh.AddUnplacedOrder(_accountOwner.ClientID);    
         }
 
         private void SetWelcomeLabel()
@@ -45,7 +49,7 @@ namespace TheBestCarShop
                 $"{tab}{_accountOwner.FirstName}, I am your father.",
                 $"{tab}Servus, {_accountOwner.FirstName}!",
                 $"{tab}こんにちは, {_accountOwner.FirstName}-さん!",
-                $"{tab}イースターエッグ", //easter eggs
+                $"{tab}イースターエッグ", 
                 $"{tab}Gas, gas, gas...🚗 "
             };
             welcomeLabel.Text = welcomeWords[new Random().Next(0, welcomeWords.Length)];
@@ -54,8 +58,7 @@ namespace TheBestCarShop
         private void logoutButton_Click(object sender, EventArgs e)
         {
             loggedInTime.Stop();
-            loggedIn = false;
-
+            dh.RemoveUnplacedOrder(_accountOwner.ClientID);
             form_StartingWindow startingWindow = new form_StartingWindow();
             this.Hide();
             startingWindow.ShowDialog();
@@ -75,7 +78,6 @@ namespace TheBestCarShop
 
         private void shopButton_Click(object sender, EventArgs e)
         {
-            //[TODO] working shop window
             form_ShopWindow shopWindow = new form_ShopWindow(_accountOwner);
             shopWindow.ShowDialog();
         }
@@ -106,6 +108,7 @@ namespace TheBestCarShop
             settings.ShowDialog();
             if (RefreshClient() == 0)
             {
+                dh.RemoveUnplacedOrder(_accountOwner.ClientID);
                 this.Hide();
                 form_StartingWindow startingWindow = new form_StartingWindow();
                 startingWindow.ShowDialog();
@@ -123,7 +126,6 @@ namespace TheBestCarShop
 
             else
             {
-                loggedIn = false;
                 return 0;
             }
         }

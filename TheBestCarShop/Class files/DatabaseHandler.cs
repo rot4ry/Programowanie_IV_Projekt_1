@@ -65,18 +65,75 @@ namespace TheBestCarShop
         }
 
         //ORDER RELATED METHODS
-        public void AddOrder()
+        public int AddUnplacedOrder(int ClientID)
         {
-            SqlConnection connection = new SqlConnection(this.connectionString);
+            string insert = 
+                "INSERT INTO Orders([CustomerID],[ReceivedDate],[SentDate],[DeliveredDate],[IsPlaced]) " +
+                "VALUES (@customerId, @receivedDate, @sentDate, @deliveredDate, @isPlaced)";
+            int affected = 0;
+            try
+            {
+                SqlConnection connection = new SqlConnection(this.connectionString);
+                affected = connection.Execute(insert,
+                    new {   customerId = ClientID, 
+                            receivedDate = DateTime.Now,
+                            sentDate = DateTime.Now,    
+                            deliveredDate = DateTime.Now,
+                            isPlaced = false 
+                    });
+            }
+            catch(Exception DatabaseHandlerException)
+            {
+                Console.WriteLine(DatabaseHandlerException.Message);
+            }
+            return affected;
         }
 
+        public void ConfirmOrder(int ClientID)
+        {
+            SqlConnection connection = new SqlConnection(this.connectionString);
+            //set IsPlaced = true
+            //set current shopping kart order as an actual order, 
+            //will not be removed when logging out 
+            
+            //also, update values by order detail quantities
+        }
+
+        public int RemoveUnplacedOrder(int ClientID)
+        {
+            string delete = "DELETE FROM Orders " +
+                            "WHERE CustomerID = @clientID " +
+                            "AND IsPlaced = 'false'";
+            int affected = 0;
+            try
+            {
+                SqlConnection connection = new SqlConnection(this.connectionString);
+                affected = connection.Execute(delete, new { clientID = ClientID });
+            }
+            catch(Exception DatabaseHandlerException)
+            {
+                Console.WriteLine(DatabaseHandlerException.Message);
+            }
+            return affected;
+        }
+
+        public void RemoveAllUnplacedOrders()
+        {
+            //just for making sure no unplaced orders occupy the database
+
+        }
+        
         //ORDER DETAILS RELATED METHODS
+        
         public void AddOrderDetail()
         {
             SqlConnection connection = new SqlConnection(this.connectionString);
         }
 
+        public void RemoveOrderDetail()
+        {
 
+        }
 
         //USER RELATED METHODS
         public int AddUser(Client client, bool isAdmin = false)

@@ -55,9 +55,6 @@ namespace TheBestCarShop
             string inputUsername = loginTextbox.Text;
             string inputPassword = passwordTextbox.Text;
 
-            inputUsername = "LukSky141";
-            inputPassword = "LukSky141";
-
             DatabaseHandler dh = new DatabaseHandler();
             
             bool isDataCorrect =  dh.CheckLoginData(inputUsername, inputPassword);

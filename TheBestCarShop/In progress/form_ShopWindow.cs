@@ -17,6 +17,8 @@ namespace TheBestCarShop
         {
             InitializeComponent();
             _accountOwner = client;
+            //addUnplacedOrder
+            //create shopping kart order with isPlaced as false
         }
 
         private void form_ShopWindow_Load(object sender, EventArgs e)
@@ -335,10 +337,12 @@ namespace TheBestCarShop
         private void closeButton_Click(object sender, EventArgs e)
         {
             this.Close();
+            Console.WriteLine("REMOVE UNPLACED ORDER");
         }
 
         private void shoppingKartButton_Click(object sender, EventArgs e)
         {
+            //order id given to the constructor
             form_ShoppingKart shoppingKart = new form_ShoppingKart();
             shoppingKart.ShowDialog();
         }
@@ -552,11 +556,11 @@ namespace TheBestCarShop
                 foreach (Product product in searchResult)
                 {
                     searchResultView.Rows.Add(
-                        partID.Tag = product.ProductID,
-                        partCategory.Tag = product.Category,
-                        partName.Tag = product.Name,
-                        partManufacturer.Tag = product.Manufacturer,
-                        partPrice.Tag = product.Price
+                        product.ProductID,
+                        product.Category,
+                        product.Name,
+                        product.Manufacturer,
+                        Math.Round(product.Price,2)
                         );
                 }
             }

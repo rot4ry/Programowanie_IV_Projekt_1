@@ -361,6 +361,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(822, 538);
+            this.ControlBox = false;
             this.Controls.Add(this.othersGroupBox);
             this.Controls.Add(this.accountGroupBox);
             this.Controls.Add(this.shopGroupBox);
@@ -371,6 +372,7 @@
             this.Name = "form_MainUserWindow";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Stern-Geschäft: Welcome!";
+            this.Load += new System.EventHandler(this.form_MainUserWindow_Load);
             this.shopGroupBox.ResumeLayout(false);
             this.ordersPanel.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.ordersIconPicBox)).EndInit();

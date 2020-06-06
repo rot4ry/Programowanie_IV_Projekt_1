@@ -29,7 +29,7 @@ namespace TheBestCarShop
             {
                 label5.Text = _product.Name;
                 label6.Text = _product.Manufacturer;
-                label7.Text = _product.Price.ToString();
+                label7.Text = Math.Round(_product.Price,2).ToString();
                 label8.Text = _product.Quantity.ToString();
 
                 label10.Text = _product.CarBrand;
