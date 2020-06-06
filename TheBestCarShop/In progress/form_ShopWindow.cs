@@ -12,18 +12,19 @@ namespace TheBestCarShop
     {
         private Client _accountOwner;
         private DatabaseHandler dh = new DatabaseHandler();
-
+        private int _shoppingKartID;
         public form_ShopWindow(Client client)
         {
             InitializeComponent();
             _accountOwner = client;
-            //addUnplacedOrder
-            //create shopping kart order with isPlaced as false
         }
 
         private void form_ShopWindow_Load(object sender, EventArgs e)
         {
             this.ActiveControl = titleLabel;
+
+            _shoppingKartID = dh.GetShoppingKartID(_accountOwner.ClientID);
+            
             LoadProductValues();
             SetIndependentComboBoxValues();
             SetYears();
@@ -337,12 +338,12 @@ namespace TheBestCarShop
         private void closeButton_Click(object sender, EventArgs e)
         {
             this.Close();
-            Console.WriteLine("REMOVE UNPLACED ORDER");
         }
 
         private void shoppingKartButton_Click(object sender, EventArgs e)
         {
             //order id given to the constructor
+            //form_ShoppingKart shoppingKart = new form_ShoppingKart(_shoppingKartID);
             form_ShoppingKart shoppingKart = new form_ShoppingKart();
             shoppingKart.ShowDialog();
         }
@@ -618,7 +619,7 @@ namespace TheBestCarShop
             else if(e.ColumnIndex == searchResultView.Columns["toKart"].Index)
             {
                 int productID = (int)searchResultView[0, e.RowIndex].Value;
-                //place for a shopping kart list, then pushed to shopping kart form
+                dh.AddToKart(_shoppingKartID, productID);                
             }
         }
 

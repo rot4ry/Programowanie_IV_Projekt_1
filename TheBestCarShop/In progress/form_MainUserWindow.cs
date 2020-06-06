@@ -59,13 +59,13 @@ namespace TheBestCarShop
         {
             loggedInTime.Stop();
             dh.RemoveUnplacedOrder(_accountOwner.ClientID);
+           
             form_StartingWindow startingWindow = new form_StartingWindow();
             this.Hide();
             startingWindow.ShowDialog();
             this.Close();
         }
 
-        
         private void loggedTimer_Tick(object sender, EventArgs e)
         {
             measuredTimeLabel.Text = $"{loggedInTime.ElapsedMilliseconds/3600000} \tHours \n{loggedInTime.ElapsedMilliseconds/60000} \tMinutes \n{loggedInTime.ElapsedMilliseconds/1000} \tSeconds";
@@ -98,8 +98,11 @@ namespace TheBestCarShop
 
         private void randomThingButton_Click(object sender, EventArgs e)
         {
-
+            //dh.AddOrder(_accountOwner.ClientID); PLACED ORDER WITH 1 POSITION
+            //dh.AddProduct
+            //dh.ConfirmOrder
             //add a random product to the shopping kart and order it
+            
         }
 
         private void settingsButton_Click(object sender, EventArgs e)

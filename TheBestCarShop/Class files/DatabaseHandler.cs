@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
+using System.Net.Http.Headers;
 using System.Windows.Forms;
 using Dapper;
 
@@ -81,6 +82,7 @@ namespace TheBestCarShop
                             deliveredDate = DateTime.Now,
                             isPlaced = false 
                     });
+                connection.Close();
             }
             catch(Exception DatabaseHandlerException)
             {
@@ -88,17 +90,6 @@ namespace TheBestCarShop
             }
             return affected;
         }
-
-        public void ConfirmOrder(int ClientID)
-        {
-            SqlConnection connection = new SqlConnection(this.connectionString);
-            //set IsPlaced = true
-            //set current shopping kart order as an actual order, 
-            //will not be removed when logging out 
-            
-            //also, update values by order detail quantities
-        }
-
         public int RemoveUnplacedOrder(int ClientID)
         {
             string delete = "DELETE FROM Orders " +
@@ -109,30 +100,122 @@ namespace TheBestCarShop
             {
                 SqlConnection connection = new SqlConnection(this.connectionString);
                 affected = connection.Execute(delete, new { clientID = ClientID });
+                connection.Close();
             }
-            catch(Exception DatabaseHandlerException)
+            catch (Exception DatabaseHandlerException)
             {
                 Console.WriteLine(DatabaseHandlerException.Message);
             }
             return affected;
         }
-
-        public void RemoveAllUnplacedOrders()
+        public int RemoveAllUnplacedOrders()
         {
-            //just for making sure no unplaced orders occupy the database
+            string delete = "DELETE FROM Orders " +
+                            "WHERE IsPlaced = 'false ' ";
 
+            int deleted = 0;
+            try
+            {
+                SqlConnection connection = new SqlConnection(this.connectionString);
+                deleted = connection.Execute(delete);
+                connection.Close();
+            }
+            catch (Exception DatabaseHandlerException)
+            {
+                Console.WriteLine(DatabaseHandlerException.Message);
+            }
+            return deleted;
         }
+        public int GetShoppingKartID(int ClientID)
+        {
+            string query = 
+                "SELECT TOP 1 [OrderID] " +
+                "FROM Orders " +
+                "WHERE [CustomerID] = @clientID " +
+                "AND [IsPlaced] = 'false' ";
+            int ID = 0;
+            try
+            {
+                SqlConnection connection = new SqlConnection(this.connectionString);
+                ID = connection.QuerySingle<int>(query, new { clientID = ClientID });
+                connection.Close();
+            }
+            catch (Exception DatabaseHandlerException)
+            {
+                Console.WriteLine(DatabaseHandlerException.Message);
+            }
+            return ID;
+        }
+        public int ConfirmOrder(int ClientID, int shoppingKartID)
+        {
+            string update =
+                "UPDATE Orders " +
+                "SET [IsPlaced] = 'true' " +
+                "WHERE [CustomerID] = @clientID " +
+                "AND [OrderID] = @shoppingKartID";
+            int affected = 0;
+
+            try
+            {
+                SqlConnection connection = new SqlConnection(this.connectionString);
+                affected = connection.Execute(update, new { clientID = ClientID, shoppingKartID = shoppingKartID });
+                connection.Close();
+            }
+            catch(Exception DatabaseHandlerException)
+            {
+                Console.WriteLine(DatabaseHandlerException.Message);
+            }
+            
+            //update values by order detail quantities [TODO]
+            
+            //when an order is confirmed,
+            //a new shopping kart is created
+            this.AddUnplacedOrder(ClientID);
+            return affected;
+        }
+
+        
         
         //ORDER DETAILS RELATED METHODS
-        
-        public void AddOrderDetail()
+        public int AddToKart(int shoppingKartID, int productID)
         {
-            SqlConnection connection = new SqlConnection(this.connectionString);
+            string insert =
+
+                "INSERT INTO OrderDetails([OrderID],[ProductID],[Price],[Quantity]) " +
+                "VALUES (@orderID, @productID, @price, @quantity) ";
+                
+
+            Product requested = this.GetProduct(productID);
+            int affected = 0;
+
+            if (requested != null)
+            {
+                try
+                {
+                    SqlConnection connection = new SqlConnection(this.connectionString);
+                    affected = connection.Execute(insert, new
+                    {
+                        orderID = shoppingKartID,
+                        productID = requested.ProductID,
+                        price = requested.Price,
+                        quantity = 1
+                    });
+                }
+                catch (Exception DatabaseHandlerException)
+                {
+                    Console.WriteLine(DatabaseHandlerException.Message);
+                }
+            }
+            else
+            {
+                form_SystemMessage failure = new form_SystemMessage("Sorry.", "We couldn't find this item.");
+            }
+            return affected;
         }
 
         public void RemoveOrderDetail()
         {
-
+            //[TODO] will remove product from the kart
         }
 
         //USER RELATED METHODS
@@ -179,9 +262,9 @@ namespace TheBestCarShop
                     (connection.Query<int>(
                     "SELECT *  " +
                     "FROM Clients " +
-                    "WHERE Username = @username " +
+                    "WHERE [Username] = @username " +
                     "AND " +
-                    "Password = @password "
+                    "[Password] = @password "
                     , new { username = username, password = password })).Count();
                 
                 connection.Close();
@@ -271,7 +354,7 @@ namespace TheBestCarShop
             {
                 Console.WriteLine(DatabaseHandlerException.Message);
             }
-            
+            connection.Close();
             return affected;
         }
     }
