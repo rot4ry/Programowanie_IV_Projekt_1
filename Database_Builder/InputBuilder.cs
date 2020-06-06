@@ -14,7 +14,7 @@ namespace Database_Builder
             new string[]{"Alpine"       , "A110", "A310", "A610"},
             new string[]{"Autozam"      , "AZ1" },
             new string[]{"Caterham"     , "Seven SuperSprint", "Seven 310", "Seven 620S", "Seven Superlight Twenty" },
-            new string[]{"Datsun"       , "100A", "240Z", "260Z", "280Z", "300ZX" },
+            new string[]{"Datsun"       , "100A", "240Z", "260Z", "280Z" },
             new string[]{"Honda"        , "S2000", "Civic EK9", "Prelude III", "Prelude V" },
             new string[]{"Koenigsegg"   , "Agera RS", "Regera", "Gemera" },
             new string[]{"Lexus"        , "IS200", "IS300", "LC500", "LFA" },
@@ -22,7 +22,7 @@ namespace Database_Builder
             new string[]{"Mazda"        , "3", "5", "6", "MX-3", "MX-5", "MX-6", "Cosmo", "Cosmo Sport", "RX7", "RX8" },
             new string[]{"Mitsubishi"   , "Galant", "Lancer", "Lancer Evolution", "Eclipse", "3000GT", "FTO", "L300" },
             new string[]{"Morgan"       , "3Wheeler", "PlusFour", "PlusSix" },
-            new string[]{"Nissan"       , "180sx", "200sx", "240sx", "Skyline", "GT-R R32", "GT-R R33", "GT-R R34" },
+            new string[]{"Nissan"       , "180sx", "200sx", "240sx", "300ZX", "Skyline", "GT-R R32", "GT-R R33", "GT-R R34" },
             new string[]{"Porsche"      , "911", "944", "924", "928" },
             new string[]{"Saab"         , "900T", "9-3", "9-5", "SK60" },
             new string[]{"Scion"        , "xd", "FRS" },
@@ -95,6 +95,8 @@ namespace Database_Builder
 
             decimal price = (decimal)(Math.Pow(10, rnd.Next(2, 5))
                                                 * rnd.NextDouble());
+            price = Math.Round(price, 2);
+            
             //GENERATING CHAOS
             int wordID = rnd.Next(RandomCoolSoundingWords.GetLength(0));
             int producerID = rnd.Next(ProducerNames.GetLength(0));

@@ -12,6 +12,7 @@ namespace Database_Builder
         public DateTime ReceivedDate { get; set; }
         public DateTime SentDate { get; set; }
         public DateTime DeliveredDate { get; set; }
+        public bool IsPlaced { get; set; } //shopping kart position when false
     }
 }
 

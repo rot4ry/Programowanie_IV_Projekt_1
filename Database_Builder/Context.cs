@@ -15,8 +15,6 @@ namespace Database_Builder
         public DbSet<OrderDetail> OrderDetails { get; set; }
         public DbSet<Product> Products { get; set; }
 
-
-
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             base.OnConfiguring(optionsBuilder);
@@ -32,7 +30,6 @@ namespace Database_Builder
                     MultiSubnetFailover=False";
 
             optionsBuilder.UseSqlServer(connectionString);
-
         }
 
         protected override void OnModelCreating(ModelBuilder mb)
@@ -46,70 +43,57 @@ namespace Database_Builder
 
             mb.Entity<Client>().Property(x => x.ClientID)
                 .UseIdentityColumn(1, 1)
-                .HasColumnName("Client ID")
                 .HasColumnType("int")
                 .IsRequired();
 
             //Client's details
             mb.Entity<Client>().Property(x => x.FirstName)
-                .HasColumnName("First name")
                 .HasColumnType("varchar(255)")
                 .IsRequired();
 
-            mb.Entity<Client>().Property(x => x.Surname)
-                .HasColumnName("Second name")
+            mb.Entity<Client>().Property(x => x.SecondName)
                 .HasColumnType("varchar(255)")
                 .IsRequired();
 
             mb.Entity<Client>().Property(x => x.CompanyName)
-                .HasColumnName("Company name")
                 .HasColumnType("varchar(255)");
 
             mb.Entity<Client>().Property(x => x.Email)
-                .HasColumnName("E-mail")
                 .HasColumnType("varchar(255)")
                 .IsRequired();
 
             mb.Entity<Client>().Property(x => x.PhoneNumber)
-                .HasColumnName("Phone number")
                 .HasColumnType("varchar(15)")
                 .IsRequired();
 
             //client's address
             mb.Entity<Client>().Property(x => x.Country)
-                .HasColumnName("Country")
                 .HasColumnType("varchar(255)")
                 .IsRequired();
 
             mb.Entity<Client>().Property(x => x.City)
-                .HasColumnName("City")
                 .HasColumnType("varchar(255)")
                 .IsRequired();
 
             mb.Entity<Client>().Property(x => x.Street)
-                .HasColumnName("Street")
                 .HasColumnType("varchar(255)")
                 .IsRequired();
 
             mb.Entity<Client>().Property(x => x.Postcode)
-                .HasColumnName("Postcode")
                 .HasColumnType("varchar(255)")
                 .IsRequired();
 
             mb.Entity<Client>().Property(x => x.BuildingNumber)
-                .HasColumnName("Building number")
                 .HasColumnType("varchar(20)")
                 .IsRequired();
 
             //account details - It's entirely unsafe to keep them here
 
             mb.Entity<Client>().Property(x => x.Username)
-                .HasColumnName("Username")
                 .HasColumnType("varchar(255)")
                 .IsRequired();
 
             mb.Entity<Client>().Property(x => x.Password)
-                .HasColumnName("Password")
                 .HasColumnType("varchar(255)")
                 .IsRequired();
 
@@ -138,8 +122,6 @@ namespace Database_Builder
 
             //Details
             mb.Entity<Order>().Property(x => x.CustomerID)
-                .HasColumnType("int")
-                .HasColumnName("Client ID")
                 .IsRequired();
 
             mb.Entity<Order>().Property(x => x.ReceivedDate)
@@ -147,11 +129,14 @@ namespace Database_Builder
                 .IsRequired();
 
             mb.Entity<Order>().Property(x => x.SentDate)
-                .HasColumnType("datetime")
-                .IsRequired();
+                .HasColumnType("datetime");
+
 
             mb.Entity<Order>().Property(x => x.DeliveredDate)
-                .HasColumnType("datetime")
+                .HasColumnType("datetime");
+
+            mb.Entity<Order>().Property(x => x.IsPlaced)
+                .HasColumnType("bit")
                 .IsRequired();
 
             /*
@@ -195,28 +180,21 @@ namespace Database_Builder
             mb.Entity<Product>().HasKey(x => x.ProductID);
 
             mb.Entity<Product>().Property(x => x.ProductID)
-                .HasColumnType("int").UseIdentityColumn(1, 1)
+                .UseIdentityColumn(1, 1)
+                .HasColumnType("int")
                 .IsRequired();
 
             //Car details
             mb.Entity<Product>().Property(x => x.CarBrand)
-                .HasColumnType("varchar(255)")
-                .HasColumnName("Brand")
                 .IsRequired();
 
             mb.Entity<Product>().Property(x => x.CarModel)
-                .HasColumnType("varchar(255)")
-                .HasColumnName("Model")
                 .IsRequired();
 
             mb.Entity<Product>().Property(x => x.CarFirstProdYear)
-                .HasColumnType("int")
-                .HasColumnName("Beginning of model production")
                 .IsRequired();
 
             mb.Entity<Product>().Property(x => x.CarLastProdYear)
-                .HasColumnType("int")
-                .HasColumnName("End of model production")
                 .IsRequired();
 
             //Price
@@ -247,7 +225,6 @@ namespace Database_Builder
                 .IsRequired();
 
             mb.Entity<Product>().Property(x => x.IsAvailable)
-                .HasColumnName("Is Available?")
                 .IsRequired();
 
             mb.Entity<Product>().Property(x => x.QtAvailable)

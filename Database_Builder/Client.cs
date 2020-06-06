@@ -10,7 +10,7 @@ namespace Database_Builder
     {
         public int ClientID { get; set; }
         public string FirstName { get; set; }
-        public string Surname { get; set; }
+        public string SecondName { get; set; }
         public string CompanyName { get; set; } //not a required field
         public string Email { get; set; }
         public string PhoneNumber { get; set; }
