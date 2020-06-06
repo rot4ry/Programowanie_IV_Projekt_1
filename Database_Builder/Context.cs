@@ -153,7 +153,6 @@ namespace Database_Builder
 
             mb.Entity<OrderDetail>().Property(x => x.OrderID)
                 .HasColumnType("int")
-                .UseIdentityColumn(1, 1)
                 .IsRequired();
 
             mb.Entity<OrderDetail>().Property(x => x.ProductID)
