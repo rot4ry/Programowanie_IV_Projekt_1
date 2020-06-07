@@ -33,6 +33,7 @@
             this.titleLabel = new System.Windows.Forms.Label();
             this.logoPicBox = new System.Windows.Forms.PictureBox();
             this.topBarsPanel = new System.Windows.Forms.Panel();
+            this.stylingButton = new System.Windows.Forms.Button();
             this.searchButton = new System.Windows.Forms.Button();
             this.clearButtons = new System.Windows.Forms.Button();
             this.priceToCBox = new System.Windows.Forms.ComboBox();
@@ -53,7 +54,6 @@
             this.shoppingKartButton = new System.Windows.Forms.Button();
             this.label4 = new System.Windows.Forms.Label();
             this.searchResultView = new System.Windows.Forms.DataGridView();
-            this.panel1 = new System.Windows.Forms.Panel();
             this.partID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.partCategory = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.partName = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -61,7 +61,7 @@
             this.partPrice = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.detailsEmpty = new System.Windows.Forms.DataGridViewButtonColumn();
             this.kartEmpty = new System.Windows.Forms.DataGridViewButtonColumn();
-            this.stylingButton = new System.Windows.Forms.Button();
+            this.panel1 = new System.Windows.Forms.Panel();
             ((System.ComponentModel.ISupportInitialize)(this.logoPicBox)).BeginInit();
             this.topBarsPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.searchResultView)).BeginInit();
@@ -138,6 +138,20 @@
             this.topBarsPanel.Name = "topBarsPanel";
             this.topBarsPanel.Size = new System.Drawing.Size(1386, 197);
             this.topBarsPanel.TabIndex = 7;
+            // 
+            // stylingButton
+            // 
+            this.stylingButton.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.stylingButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.stylingButton.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold);
+            this.stylingButton.ForeColor = System.Drawing.Color.SteelBlue;
+            this.stylingButton.Location = new System.Drawing.Point(847, 12);
+            this.stylingButton.Name = "stylingButton";
+            this.stylingButton.Size = new System.Drawing.Size(123, 38);
+            this.stylingButton.TabIndex = 25;
+            this.stylingButton.Text = "stylingButton";
+            this.stylingButton.UseVisualStyleBackColor = false;
+            this.stylingButton.Visible = false;
             // 
             // searchButton
             // 
@@ -441,15 +455,6 @@
             this.searchResultView.TabIndex = 8;
             this.searchResultView.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.searchResultView_CellClick);
             // 
-            // panel1
-            // 
-            this.panel1.BackColor = System.Drawing.Color.LightGray;
-            this.panel1.Controls.Add(this.searchResultView);
-            this.panel1.Location = new System.Drawing.Point(-6, 200);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1386, 517);
-            this.panel1.TabIndex = 9;
-            // 
             // partID
             // 
             this.partID.HeaderText = "";
@@ -507,19 +512,14 @@
             this.kartEmpty.ReadOnly = true;
             this.kartEmpty.Width = 150;
             // 
-            // stylingButton
+            // panel1
             // 
-            this.stylingButton.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.stylingButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.stylingButton.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold);
-            this.stylingButton.ForeColor = System.Drawing.Color.SteelBlue;
-            this.stylingButton.Location = new System.Drawing.Point(847, 12);
-            this.stylingButton.Name = "stylingButton";
-            this.stylingButton.Size = new System.Drawing.Size(123, 38);
-            this.stylingButton.TabIndex = 25;
-            this.stylingButton.Text = "stylingButton";
-            this.stylingButton.UseVisualStyleBackColor = false;
-            this.stylingButton.Visible = false;
+            this.panel1.BackColor = System.Drawing.Color.LightGray;
+            this.panel1.Controls.Add(this.searchResultView);
+            this.panel1.Location = new System.Drawing.Point(-6, 200);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(1386, 517);
+            this.panel1.TabIndex = 9;
             // 
             // form_ShopWindow
             // 

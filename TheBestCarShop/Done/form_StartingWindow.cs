@@ -56,7 +56,8 @@ namespace TheBestCarShop
             string inputPassword = passwordTextbox.Text;
 
             DatabaseHandler dh = new DatabaseHandler();
-            
+            dh.RemoveAllUnplacedOrders();
+
             bool isDataCorrect =  dh.CheckLoginData(inputUsername, inputPassword);
            
             if (isDataCorrect == true)

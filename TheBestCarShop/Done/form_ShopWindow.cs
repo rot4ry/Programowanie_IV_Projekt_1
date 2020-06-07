@@ -342,10 +342,9 @@ namespace TheBestCarShop
 
         private void shoppingKartButton_Click(object sender, EventArgs e)
         {
-            //order id given to the constructor
-            //form_ShoppingKart shoppingKart = new form_ShoppingKart(_shoppingKartID);
-            form_ShoppingKart shoppingKart = new form_ShoppingKart();
+            form_ShoppingKart shoppingKart = new form_ShoppingKart(_accountOwner);
             shoppingKart.ShowDialog();
+            _shoppingKartID = dh.GetShoppingKartID(_accountOwner.ClientID);
         }
 
         
@@ -574,23 +573,22 @@ namespace TheBestCarShop
         private void ReplaceColumnWithButtons(string name, string text)
         {
             DataGridViewButtonColumn buttonColumn = new DataGridViewButtonColumn();
-            {
-                buttonColumn.Name = name;
-                buttonColumn.HeaderText = "";
-                buttonColumn.Text = text;
-                buttonColumn.UseColumnTextForButtonValue = true;
-                buttonColumn.Width = 152;
+            
+            buttonColumn.Name = name;
+            buttonColumn.HeaderText = "";
+            buttonColumn.Text = text;
+            buttonColumn.UseColumnTextForButtonValue = true;
+            buttonColumn.Width = 152;
 
-                buttonColumn.DefaultCellStyle = new DataGridViewCellStyle()
-                {
-                    //WELCOME TO THE HOUSE OF FUN
-                    BackColor   = stylingButton.BackColor,
-                    ForeColor   = stylingButton.ForeColor,
-                    Font        = stylingButton.Font,
-                    Alignment = DataGridViewContentAlignment.MiddleCenter,
-                };
-                this.searchResultView.Columns.Add(buttonColumn);
-            }
+            buttonColumn.DefaultCellStyle = new DataGridViewCellStyle()
+            {
+                //WELCOME TO THE HOUSE OF FUN
+                BackColor   = stylingButton.BackColor,
+                ForeColor   = stylingButton.ForeColor,
+                Font        = stylingButton.Font,
+                Alignment = DataGridViewContentAlignment.MiddleCenter,
+            };
+            this.searchResultView.Columns.Add(buttonColumn);
         }
 
         private void AddColumns()
@@ -619,7 +617,7 @@ namespace TheBestCarShop
             else if(e.ColumnIndex == searchResultView.Columns["toKart"].Index)
             {
                 int productID = (int)searchResultView[0, e.RowIndex].Value;
-                dh.AddToKart(_shoppingKartID, productID);                
+                dh.AddToKartIfNotExists(_shoppingKartID, productID);                
             }
         }
 

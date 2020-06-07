@@ -85,7 +85,7 @@ namespace TheBestCarShop
         private void shoppingKartButton_Click(object sender, EventArgs e)
         {
             //[TODO] working shopping kart
-            form_ShoppingKart shoppingKart = new form_ShoppingKart();
+            form_ShoppingKart shoppingKart = new form_ShoppingKart(_accountOwner);
             shoppingKart.ShowDialog();
         }
 

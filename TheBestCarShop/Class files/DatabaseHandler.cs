@@ -46,7 +46,6 @@ namespace TheBestCarShop
                 return (List<Product>) null;
             }
         }
-        
         public Product GetProduct(int id)
         {
             string query = "SELECT * FROM Products WHERE ProductID = @id";
@@ -64,6 +63,79 @@ namespace TheBestCarShop
                 return (Product)null;
             }
         }
+        public int UpdateQuantityBasedOnKart(int productID, int quantity)
+        {
+            //to use in ConfirmOrder ONLY
+            string update = "UPDATE Products " +
+                            "SET Quantity = Quantity - @quantity, IsAvailable = @isavailable " +
+                            "WHERE ProductID = @productID ";
+            
+            int affected = 0;
+            Product product = this.GetProduct(productID);
+            
+            if (product.Quantity < quantity)
+            {
+                return 1234567;
+            }
+            else if(product.Quantity == quantity)
+            {
+                try
+                {
+                    SqlConnection connection = new SqlConnection(this.connectionString);
+                    affected = connection.Execute(update, new
+                    {
+                        quantity = quantity,
+                        isavailable = false,
+                        productID = productID
+                    });
+                    connection.Close();
+                }
+                catch (Exception DatabaseHandlerException)
+                {
+                    Console.WriteLine(DatabaseHandlerException.Message);
+                }
+            }
+            else if (product.Quantity > quantity)
+            {
+                try
+                {
+                    SqlConnection connection = new SqlConnection(this.connectionString);
+                    affected = connection.Execute(update, new
+                    {
+                        quantity = quantity,
+                        isavailable = true,
+                        productID = productID
+                    });
+                    connection.Close();
+                }
+                catch (Exception DatabaseHandlerException)
+                {
+                    Console.WriteLine(DatabaseHandlerException.Message);
+                }
+            }
+            return affected;
+        }
+        public int GetAvailableQuantity(int productID)
+        {
+            string query = "SELECT Quantity " +
+                "FROM Products " +
+                "WHERE ProductID = @productID ";
+            int quantity = 0;
+            
+            try
+            {
+                SqlConnection connection = new SqlConnection(this.connectionString);
+                quantity = connection.QuerySingle<int>(query, new { productID = productID });
+                connection.Close();
+            }
+            catch (Exception DatabaseHandlerException)
+            {
+                Console.WriteLine(DatabaseHandlerException.Message);
+            }
+
+            return quantity;
+        }
+
 
         //ORDER RELATED METHODS
         public int AddUnplacedOrder(int ClientID)
@@ -175,16 +247,17 @@ namespace TheBestCarShop
         }
 
         
-        
         //ORDER DETAILS RELATED METHODS
-        public int AddToKart(int shoppingKartID, int productID)
+        public int AddToKartIfNotExists(int shoppingKartID, int productID)
         {
             string insert =
-
                 "INSERT INTO OrderDetails([OrderID],[ProductID],[Price],[Quantity]) " +
                 "VALUES (@orderID, @productID, @price, @quantity) ";
-                
 
+            string select = "SELECT COUNT(*) FROM OrderDetails " +
+                            "WHERE OrderID = @kartID " +
+                            "AND ProductID = @productID";
+            //prevents duplicates
             Product requested = this.GetProduct(productID);
             int affected = 0;
 
@@ -193,13 +266,25 @@ namespace TheBestCarShop
                 try
                 {
                     SqlConnection connection = new SqlConnection(this.connectionString);
-                    affected = connection.Execute(insert, new
+
+                    int existing = connection.QuerySingle<int>(select, 
+                        new { 
+                            kartID = shoppingKartID,
+                            productID = productID 
+                        });
+
+                    if (existing == 0)
                     {
-                        orderID = shoppingKartID,
-                        productID = requested.ProductID,
-                        price = requested.Price,
-                        quantity = 1
-                    });
+
+                        affected = connection.Execute(insert, new
+                        {
+                            orderID = shoppingKartID,
+                            productID = requested.ProductID,
+                            price = requested.Price,
+                            quantity = 1
+                        });
+                    }
+                    connection.Close();
                 }
                 catch (Exception DatabaseHandlerException)
                 {
@@ -212,11 +297,80 @@ namespace TheBestCarShop
             }
             return affected;
         }
-
-        public void RemoveOrderDetail()
+        public int RemoveFromKart(int shoppingKartID, int productID)
         {
-            //[TODO] will remove product from the kart
+            string delete =
+                "DELETE FROM OrderDetails " +
+                "WHERE OrderID = @shoppingKartID " +
+                "AND ProductID = @productID ";
+            int affected = 0;
+
+            try
+            {
+                SqlConnection connection = new SqlConnection(this.connectionString);
+                affected = connection.Execute(delete, new
+                {
+                    shoppingKartID = shoppingKartID,
+                    productID = productID
+                });
+                connection.Close();
+            }
+            catch (Exception DatabaseHandlerException)
+            {
+                Console.WriteLine(DatabaseHandlerException.Message);
+            }
+            return affected;
         }
+        public List<OrderDetail> GetKartList(int shoppingKartID)
+        {
+            string query =  "SELECT * " +
+                            "FROM OrderDetails " +
+                            "WHERE OrderID = @kartID";
+            
+            List<OrderDetail> shoppingKartList = new List<OrderDetail>();
+            try
+            {
+                SqlConnection connection = new SqlConnection(this.connectionString);
+
+                IEnumerable<OrderDetail> queryResult = 
+                    connection.Query<OrderDetail>(query, new
+                                    {
+                                        kartID = shoppingKartID
+                                    });
+                shoppingKartList = queryResult.ToList<OrderDetail>();
+                
+                connection.Close();
+            }
+            catch(Exception DatabaseHandlerException)
+            {
+                Console.WriteLine(DatabaseHandlerException.Message);
+            }
+
+            return shoppingKartList;
+        }
+        public int ClearKart(int shoppingKartID)
+        {
+            string delete = "DELETE FROM OrderDetails " +
+                            "WHERE OrderID = @kartID ";
+            int affected = 0;
+
+            try
+            {
+                SqlConnection connection = new SqlConnection(this.connectionString);
+                affected = connection.Execute(delete,
+                    new
+                    {
+                        kartID = shoppingKartID
+                    });
+            }
+            catch (Exception DatabaseHandlerException)
+            {
+                Console.WriteLine(DatabaseHandlerException.Message);
+            }
+
+            return affected;
+        }
+        
 
         //USER RELATED METHODS
         public int AddUser(Client client, bool isAdmin = false)
@@ -277,7 +431,6 @@ namespace TheBestCarShop
                 return false;
             }
         }
-
         public Client GetClientDetails(string username)
         {
             SqlConnection connection = new SqlConnection(this.connectionString);
@@ -312,7 +465,6 @@ namespace TheBestCarShop
                 return (Client)null;
             }
         }
-
         public int UpdateClientField(string columnName, string value, string username)
         {
             int affected = 0;
@@ -338,8 +490,7 @@ namespace TheBestCarShop
             connection.Close();
             return affected;
         }
-
-        public int DeleteClient(string username)
+        public int DeleteUser(string username)
         {
             int affected = 0;
 

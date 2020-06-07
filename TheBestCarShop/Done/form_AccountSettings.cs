@@ -301,7 +301,7 @@ namespace TheBestCarShop.In_progress
 
         private void deleteButton_Click(object sender, EventArgs e)
         {
-            if (dh.DeleteClient(_accountOwner.Username) == 1)
+            if (dh.DeleteUser(_accountOwner.Username) == 1)
             {
                 form_SystemMessage success = new form_SystemMessage("Success!", "Your account has been deleted!", this);
             }
