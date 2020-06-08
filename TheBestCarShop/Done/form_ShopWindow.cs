@@ -607,14 +607,16 @@ namespace TheBestCarShop
         //Event handler for buttons in the DataGridView
         private void searchResultView_CellClick(object sender, DataGridViewCellEventArgs e)
         {   
-            if(e.ColumnIndex == searchResultView.Columns["details"].Index)
+            if(e.ColumnIndex == searchResultView.Columns["details"].Index
+                && e.RowIndex > -1)
             {
                 int productID = (int)searchResultView[0, e.RowIndex].Value;
                 form_ProductDetailsWindow productDetails = new form_ProductDetailsWindow(productID);
                 productDetails.ShowDialog();
             }
 
-            else if(e.ColumnIndex == searchResultView.Columns["toKart"].Index)
+            else if(e.ColumnIndex == searchResultView.Columns["toKart"].Index
+                    && e.RowIndex > -1)
             {
                 int productID = (int)searchResultView[0, e.RowIndex].Value;
                 dh.AddToKartIfNotExists(_shoppingKartID, productID);                

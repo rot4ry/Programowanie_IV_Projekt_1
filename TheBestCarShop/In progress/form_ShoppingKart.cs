@@ -1,11 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace TheBestCarShop
@@ -15,9 +11,10 @@ namespace TheBestCarShop
         private DatabaseHandler dh = new DatabaseHandler();
         private Client _accountOwner;
         private int _shoppingKartID;
+        
 
         private List<OrderDetail> shoppingKartList = new List<OrderDetail>();
-        private List<Product> productList = new List<Product>();
+        private List<Product> productsInKart = new List<Product>();
 
         public form_ShoppingKart(Client client)
         {
@@ -25,47 +22,32 @@ namespace TheBestCarShop
             _accountOwner = client;
         }
 
-
         private void form_ShoppingKart_Load(object sender, EventArgs e)
         {
             _shoppingKartID = dh.GetShoppingKartID(_accountOwner.ClientID);
-            shoppingKartList = dh.GetKartList(_shoppingKartID);
+            RefreshKart();
+        }
+
+        //DataGridView contents
+        private void RefreshKart()
+        {
             BuildProductsList();
             ViewKart();
         }
-
         private void BuildProductsList()
         {
+            shoppingKartList.Clear();
+            productsInKart.Clear();
+
+            shoppingKartList = dh.GetKartList(_shoppingKartID);
             foreach (var item in shoppingKartList)
             {
-                Product product = dh.GetProduct(item.ProductID);
-                productList.Add(product);
+                Product product = dh.GetProduct(item.ProductID);  
+                productsInKart.Add(product);
             }
         }
 
-        private void closeButton_Click(object sender, EventArgs e)
-        {
-            this.Close();
-        }
-        private void placeOrderButton_Click(object sender, EventArgs e)
-        {
-            int result = dh.ConfirmOrder(_accountOwner.ClientID, _shoppingKartID);
-            if(result == 1)
-            {
-                form_SystemMessage success = new form_SystemMessage("Success!", "Your order is being prepared!", this);
-            }
-            else
-            {
-                form_SystemMessage success = new form_SystemMessage("Failure.", "Something went wrong, please try again.");
-            }
-        }
-
-        private void clearKartButton_Click(object sender, EventArgs e)
-        {
-            dh.ClearKart(_shoppingKartID);
-            ViewKart();
-        }
-
+        //Controlling DataGridView layout
         private void ReplaceColumnWithButtons(string name, string text)
         {
             DataGridViewButtonColumn buttonColumn = new DataGridViewButtonColumn();
@@ -85,7 +67,6 @@ namespace TheBestCarShop
             };
             this.shoppingKartView.Columns.Add(buttonColumn);  
         }
-
         private void AddColumns()
         {
             if (shoppingKartView.Columns["details"] == null)
@@ -99,80 +80,121 @@ namespace TheBestCarShop
                 ReplaceColumnWithButtons("remove", "Remove from kart");
             }
         }
-
         private void ViewKart()
-        {//more 
-            //building
+        {
+            shoppingKartView.Rows.Clear();
             AddColumns();
-            if(productList != null && shoppingKartList != null)
+            if(productsInKart != null)
             {
-                foreach(var item in productList)
+                foreach(var item in productsInKart)
                 {
                     shoppingKartView.Rows.Add(
+                        item.ProductID,
                         item.Name,
-                        item.Price);
+                        shoppingKartList.Where(x=>x.ProductID==item.ProductID).Select(x=>x.Quantity).Single(),
+                        Math.Round(item.Price,2)
+                        );
                 }
             }
         }
 
-    }
-
-}
-
-
-/*
-
-private void ViewSearchResult(List<Product> searchResult)
-{
-    AddColumns();
-
-    if (searchResult != null)
-    {
-        foreach (Product product in searchResult)
+        //Button events
+        private void closeButton_Click(object sender, EventArgs e)
         {
-            searchResultView.Rows.Add(
-                product.ProductID,
-                product.Category,
-                product.Name,
-                product.Manufacturer,
-                Math.Round(product.Price, 2)
-                );
+            this.Close();
+        }
+        private void placeOrderButton_Click(object sender, EventArgs e)
+        {
+            shoppingKartList = dh.GetKartList(_shoppingKartID);
+            
+            int _broken = 0;
+            int _passed = 0;
+            //try updating values
+            foreach(OrderDetail item in shoppingKartList)
+            {
+                int updateResult = dh.UpdateProductQuantityBasedOnKart
+                    (item.ProductID, item.Quantity);
+                if (updateResult == 1)
+                {
+                    _passed += 1;
+                }
+                else
+                {
+                    _broken = 1;
+                    break;
+                }
+            }
+
+            //if an error occurs, values are returned to the previous state
+            if (_broken == 1)
+            {
+                foreach (OrderDetail item in shoppingKartList)
+                {
+                    int reverse = dh.UpdateProductQuantityBasedOnKart(item.ProductID, (-1) * item.Quantity);
+
+                    if (reverse == 1)
+                    {
+                        _passed -= 1;
+                    }
+                    if (_passed == 0) break;
+                }
+            }
+            else if (_broken == 0)
+            {
+                int result = dh.ConfirmOrder(_accountOwner.ClientID, _shoppingKartID);
+                if (result == 1)
+                {
+                    form_SystemMessage success = new form_SystemMessage("Success!", "Your order is being prepared!", this);
+                }
+                else
+                {
+                    form_SystemMessage success = new form_SystemMessage("Failure.", "Something went wrong, please try again.");
+                }
+            }
+        }
+        private void clearKartButton_Click(object sender, EventArgs e)
+        {
+            dh.ClearKart(_shoppingKartID);
+            RefreshKart();
+        }
+
+
+        //Grid buttons events
+        private void shoppingKartView_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.ColumnIndex == shoppingKartView.Columns["details"].Index)
+            {
+                int productID = (int)shoppingKartView[0, e.RowIndex].Value;
+                form_ProductDetailsWindow details = new form_ProductDetailsWindow(productID);
+                details.ShowDialog();
+            }
+            else if(e.ColumnIndex == shoppingKartView.Columns["remove"].Index)
+            {
+                int productID = (int)shoppingKartView[0, e.RowIndex].Value;
+                dh.RemoveFromKart(_shoppingKartID, productID);
+                RefreshKart();
+            }
+        }
+        private void shoppingKartView_CellValidated(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.ColumnIndex == shoppingKartView.Columns["Quantity"].Index)
+            {
+                int quantity = productsInKart
+                    .Where(x => x.ProductID == Convert.ToInt32(shoppingKartView[0, e.RowIndex].Value))
+                    .Select(x => x.Quantity).Single();
+
+                if (Convert.ToInt32(shoppingKartView["Quantity", e.RowIndex].Value) > quantity)
+                {
+                    form_SystemMessage alert = new form_SystemMessage("Sorry.", $"Right now the quantity if this product available eguals \n{quantity}");
+                    shoppingKartView[e.ColumnIndex, e.RowIndex].Value = 1;
+                }
+                else
+                {
+                    int productID = (int)shoppingKartView[0, e.RowIndex].Value;
+                    int newQuantity = Convert.ToInt32(shoppingKartView["Quantity", e.RowIndex].Value);
+                    dh.UpdateQuantityInKart(_shoppingKartID, productID, newQuantity);
+                }
+            }
         }
     }
-    else
-    {
-        form_SystemMessage failure = new form_SystemMessage("Sorry.", "Something went wrong.");
-    }
 }
-
-
-private void AddColumns()
-{
-    if (searchResultView.Columns["details"] == null)
-    {
-        searchResultView.Columns.Remove("detailsEmpty");
-        ReplaceColumnWithButtons("details", "Show details");
-    }
-    if (searchResultView.Columns["toKart"] == null)
-    {
-        searchResultView.Columns.Remove("kartEmpty");
-        ReplaceColumnWithButtons("toKart", "Add to kart");
-    }
-}
-//Event handler for buttons in the DataGridView
-private void searchResultView_CellClick(object sender, DataGridViewCellEventArgs e)
-{
-    if (e.ColumnIndex == searchResultView.Columns["details"].Index)
-    {
-        int productID = (int)searchResultView[0, e.RowIndex].Value;
-        form_ProductDetailsWindow productDetails = new form_ProductDetailsWindow(productID);
-        productDetails.ShowDialog();
-    }
-
-    else if (e.ColumnIndex == searchResultView.Columns["toKart"].Index)
-    {
-        int productID = (int)searchResultView[0, e.RowIndex].Value;
-        dh.AddToKart(_shoppingKartID, productID);
-    }
-}
-*/

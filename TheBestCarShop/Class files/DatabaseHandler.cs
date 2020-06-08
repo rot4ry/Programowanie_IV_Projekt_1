@@ -24,27 +24,21 @@ namespace TheBestCarShop
         //PRODUCT RELATED METHODS
         public List<Product> GetAvailableProductsList()
         {
-            IEnumerable<Product> queryResult;
-            List<Product> availableProductsList = new List<Product>();
+            List<Product> availableProductsList;
 
             string query = "SELECT * FROM Products WHERE IsAvailable=1";
 
             try
             {
                 SqlConnection connection = new SqlConnection(this.connectionString);
-                queryResult = connection.Query<Product>(query);
-                foreach(var item in queryResult)
-                {
-                    availableProductsList.Add((Product)item);
-                }
+                availableProductsList = connection.Query<Product>(query).ToList<Product>();
                 connection.Close();
-                return availableProductsList;
             }
             catch (Exception DatabaseHandlerException)
             {
-                Console.WriteLine(DatabaseHandlerException.Message);
-                return (List<Product>) null;
+                Console.WriteLine(DatabaseHandlerException.Message);                return (List<Product>) null;
             }
+            return availableProductsList;
         }
         public Product GetProduct(int id)
         {
@@ -63,7 +57,7 @@ namespace TheBestCarShop
                 return (Product)null;
             }
         }
-        public int UpdateQuantityBasedOnKart(int productID, int quantity)
+        public int UpdateProductQuantityBasedOnKart(int productID, int quantity)
         {
             //to use in ConfirmOrder ONLY
             string update = "UPDATE Products " +
@@ -117,9 +111,9 @@ namespace TheBestCarShop
         }
         public int GetAvailableQuantity(int productID)
         {
-            string query = "SELECT Quantity " +
-                "FROM Products " +
-                "WHERE ProductID = @productID ";
+            string query =  "SELECT Quantity " +
+                            "FROM Products " +
+                            "WHERE ProductID = @productID ";
             int quantity = 0;
             
             try
@@ -167,7 +161,12 @@ namespace TheBestCarShop
             string delete = "DELETE FROM Orders " +
                             "WHERE CustomerID = @clientID " +
                             "AND IsPlaced = 'false'";
+            
             int affected = 0;
+            
+            //deletes all OrderDetails connected to an unplaced order
+            this.ClearKart(this.GetShoppingKartID(ClientID));
+            
             try
             {
                 SqlConnection connection = new SqlConnection(this.connectionString);
@@ -182,14 +181,33 @@ namespace TheBestCarShop
         }
         public int RemoveAllUnplacedOrders()
         {
-            string delete = "DELETE FROM Orders " +
-                            "WHERE IsPlaced = 'false ' ";
+            //this method mostly will do nothing
+            //as unplaced Orders and their OrderDetails 
+            //are removed while user is logging out
+            //however
+            //in case of any bugs/errors, this method kicks in
+            //while launching the app
+            string select = "SELECT OrderID " +
+                            "FROM Orders " +
+                            "WHERE IsPlaced = 'false' ";
 
+            string delete = "DELETE FROM Orders " +
+                            "DELETE FROM OrderDetails " +
+                            "WHERE OrderID = @unplacedOrderID ";
+            
             int deleted = 0;
             try
             {
                 SqlConnection connection = new SqlConnection(this.connectionString);
-                deleted = connection.Execute(delete);
+                
+                List<int> unplacedIDs = connection.Query<int>(select).ToList<int>();
+                if (unplacedIDs != null)
+                {
+                    foreach (int item in unplacedIDs)
+                    {
+                        deleted += connection.Execute(delete, new { unplacedOrderID = item });
+                    }
+                }
                 connection.Close();
             }
             catch (Exception DatabaseHandlerException)
@@ -224,7 +242,7 @@ namespace TheBestCarShop
                 "UPDATE Orders " +
                 "SET [IsPlaced] = 'true' " +
                 "WHERE [CustomerID] = @clientID " +
-                "AND [OrderID] = @shoppingKartID";
+                "AND [OrderID] = @shoppingKartID ";
             int affected = 0;
 
             try
@@ -237,8 +255,6 @@ namespace TheBestCarShop
             {
                 Console.WriteLine(DatabaseHandlerException.Message);
             }
-            
-            //update values by order detail quantities [TODO]
             
             //when an order is confirmed,
             //a new shopping kart is created
@@ -347,6 +363,32 @@ namespace TheBestCarShop
             }
 
             return shoppingKartList;
+        }
+        public int UpdateQuantityInKart(int shoppingKartID, int productID, int newQuantity)
+        {
+            string update = "UPDATE OrderDetails " +
+                            "SET Quantity = @newQuantity " +
+                            "WHERE OrderID = @shoppingKartID " +
+                            "AND ProductID = @productID ";
+            
+            int affected = 0;
+            
+            try
+            {
+                SqlConnection connection = new SqlConnection(this.connectionString);
+                affected = connection.Execute(update,
+                                    new { 
+                                        newQuantity = newQuantity,
+                                        shoppingKartID = shoppingKartID,
+                                        productID = productID
+                                    });
+                connection.Close();
+            }
+            catch(Exception DatabaseHandlerException)
+            {
+                Console.WriteLine(DatabaseHandlerException.Message);
+            }
+            return affected;
         }
         public int ClearKart(int shoppingKartID)
         {

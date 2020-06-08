@@ -33,9 +33,11 @@
             this.kartLabel = new System.Windows.Forms.Label();
             this.logoBox = new System.Windows.Forms.PictureBox();
             this.panel = new System.Windows.Forms.Panel();
-            this.shoppingKartView = new System.Windows.Forms.DataGridView();
-            this.placeOrderButton = new System.Windows.Forms.Button();
+            this.valueLabel = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
             this.clearKartButton = new System.Windows.Forms.Button();
+            this.placeOrderButton = new System.Windows.Forms.Button();
+            this.shoppingKartView = new System.Windows.Forms.DataGridView();
             this.stylingButtonSK = new System.Windows.Forms.Button();
             this.partID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.partName = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -89,13 +91,69 @@
             // panel
             // 
             this.panel.BackColor = System.Drawing.Color.LightGray;
+            this.panel.Controls.Add(this.valueLabel);
+            this.panel.Controls.Add(this.label1);
             this.panel.Controls.Add(this.clearKartButton);
             this.panel.Controls.Add(this.placeOrderButton);
             this.panel.Controls.Add(this.shoppingKartView);
             this.panel.Location = new System.Drawing.Point(-1, 65);
             this.panel.Name = "panel";
-            this.panel.Size = new System.Drawing.Size(1096, 443);
+            this.panel.Size = new System.Drawing.Size(1096, 413);
             this.panel.TabIndex = 10;
+            // 
+            // valueLabel
+            // 
+            this.valueLabel.BackColor = System.Drawing.Color.Azure;
+            this.valueLabel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.valueLabel.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.valueLabel.ForeColor = System.Drawing.SystemColors.Highlight;
+            this.valueLabel.Location = new System.Drawing.Point(247, 351);
+            this.valueLabel.Name = "valueLabel";
+            this.valueLabel.Size = new System.Drawing.Size(351, 44);
+            this.valueLabel.TabIndex = 14;
+            this.valueLabel.Text = "cost";
+            this.valueLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label1
+            // 
+            this.label1.BackColor = System.Drawing.Color.Azure;
+            this.label1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.label1.Font = new System.Drawing.Font("Arial", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.ForeColor = System.Drawing.Color.Green;
+            this.label1.Location = new System.Drawing.Point(26, 351);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(215, 44);
+            this.label1.TabIndex = 13;
+            this.label1.Text = "Order value : ";
+            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // clearKartButton
+            // 
+            this.clearKartButton.BackColor = System.Drawing.Color.Snow;
+            this.clearKartButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.clearKartButton.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold);
+            this.clearKartButton.ForeColor = System.Drawing.SystemColors.Highlight;
+            this.clearKartButton.Location = new System.Drawing.Point(700, 351);
+            this.clearKartButton.Name = "clearKartButton";
+            this.clearKartButton.Size = new System.Drawing.Size(188, 44);
+            this.clearKartButton.TabIndex = 12;
+            this.clearKartButton.Text = "Clear kart";
+            this.clearKartButton.UseVisualStyleBackColor = false;
+            this.clearKartButton.Click += new System.EventHandler(this.clearKartButton_Click);
+            // 
+            // placeOrderButton
+            // 
+            this.placeOrderButton.BackColor = System.Drawing.Color.Snow;
+            this.placeOrderButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.placeOrderButton.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold);
+            this.placeOrderButton.ForeColor = System.Drawing.SystemColors.Highlight;
+            this.placeOrderButton.Location = new System.Drawing.Point(894, 351);
+            this.placeOrderButton.Name = "placeOrderButton";
+            this.placeOrderButton.Size = new System.Drawing.Size(188, 44);
+            this.placeOrderButton.TabIndex = 11;
+            this.placeOrderButton.Text = "Place order";
+            this.placeOrderButton.UseVisualStyleBackColor = false;
+            this.placeOrderButton.Click += new System.EventHandler(this.placeOrderButton_Click);
             // 
             // shoppingKartView
             // 
@@ -124,40 +182,13 @@
             this.shoppingKartView.Location = new System.Drawing.Point(30, 15);
             this.shoppingKartView.Margin = new System.Windows.Forms.Padding(30, 20, 30, 50);
             this.shoppingKartView.Name = "shoppingKartView";
-            this.shoppingKartView.ReadOnly = true;
             this.shoppingKartView.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
             this.shoppingKartView.RowHeadersVisible = false;
             this.shoppingKartView.RowTemplate.Height = 30;
             this.shoppingKartView.Size = new System.Drawing.Size(1035, 326);
             this.shoppingKartView.TabIndex = 8;
-            // 
-            // placeOrderButton
-            // 
-            this.placeOrderButton.BackColor = System.Drawing.Color.Snow;
-            this.placeOrderButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.placeOrderButton.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold);
-            this.placeOrderButton.ForeColor = System.Drawing.SystemColors.Highlight;
-            this.placeOrderButton.Location = new System.Drawing.Point(894, 376);
-            this.placeOrderButton.Name = "placeOrderButton";
-            this.placeOrderButton.Size = new System.Drawing.Size(188, 44);
-            this.placeOrderButton.TabIndex = 11;
-            this.placeOrderButton.Text = "Place order";
-            this.placeOrderButton.UseVisualStyleBackColor = false;
-            this.placeOrderButton.Click += new System.EventHandler(this.placeOrderButton_Click);
-            // 
-            // clearKartButton
-            // 
-            this.clearKartButton.BackColor = System.Drawing.Color.Snow;
-            this.clearKartButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.clearKartButton.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold);
-            this.clearKartButton.ForeColor = System.Drawing.SystemColors.Highlight;
-            this.clearKartButton.Location = new System.Drawing.Point(700, 376);
-            this.clearKartButton.Name = "clearKartButton";
-            this.clearKartButton.Size = new System.Drawing.Size(188, 44);
-            this.clearKartButton.TabIndex = 12;
-            this.clearKartButton.Text = "Clear kart";
-            this.clearKartButton.UseVisualStyleBackColor = false;
-            this.clearKartButton.Click += new System.EventHandler(this.clearKartButton_Click);
+            this.shoppingKartView.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.shoppingKartView_CellClick);
+            this.shoppingKartView.CellValidated += new System.Windows.Forms.DataGridViewCellEventHandler(this.shoppingKartView_CellValidated);
             // 
             // stylingButtonSK
             // 
@@ -178,7 +209,6 @@
             // 
             this.partID.HeaderText = "";
             this.partID.Name = "partID";
-            this.partID.ReadOnly = true;
             this.partID.Visible = false;
             // 
             // partName
@@ -187,14 +217,12 @@
             this.partName.FillWeight = 509.3365F;
             this.partName.HeaderText = "Name";
             this.partName.Name = "partName";
-            this.partName.ReadOnly = true;
             this.partName.Width = 470;
             // 
             // Quantity
             // 
             this.Quantity.HeaderText = "Quantity";
             this.Quantity.Name = "Quantity";
-            this.Quantity.ReadOnly = true;
             // 
             // partPrice
             // 
@@ -202,21 +230,18 @@
             this.partPrice.FillWeight = 9.496284F;
             this.partPrice.HeaderText = "Price";
             this.partPrice.Name = "partPrice";
-            this.partPrice.ReadOnly = true;
             this.partPrice.Width = 140;
             // 
             // detailsEmpty
             // 
             this.detailsEmpty.HeaderText = "";
             this.detailsEmpty.Name = "detailsEmpty";
-            this.detailsEmpty.ReadOnly = true;
             this.detailsEmpty.Width = 150;
             // 
             // removeEmpty
             // 
             this.removeEmpty.HeaderText = "";
             this.removeEmpty.Name = "removeEmpty";
-            this.removeEmpty.ReadOnly = true;
             this.removeEmpty.Width = 150;
             // 
             // form_ShoppingKart
@@ -224,7 +249,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(1093, 511);
+            this.ClientSize = new System.Drawing.Size(1093, 481);
             this.ControlBox = false;
             this.Controls.Add(this.stylingButtonSK);
             this.Controls.Add(this.panel);
@@ -253,6 +278,8 @@
         private System.Windows.Forms.Button clearKartButton;
         private System.Windows.Forms.Button placeOrderButton;
         private System.Windows.Forms.Button stylingButtonSK;
+        private System.Windows.Forms.Label valueLabel;
+        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.DataGridViewTextBoxColumn partID;
         private System.Windows.Forms.DataGridViewTextBoxColumn partName;
         private System.Windows.Forms.DataGridViewTextBoxColumn Quantity;
