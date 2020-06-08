@@ -33,6 +33,7 @@ namespace TheBestCarShop
         {
             BuildProductsList();
             ViewKart();
+            ComputeOrderValue();
         }
         private void BuildProductsList()
         {
@@ -45,6 +46,13 @@ namespace TheBestCarShop
                 Product product = dh.GetProduct(item.ProductID);  
                 productsInKart.Add(product);
             }
+        }
+        private void ComputeOrderValue()
+        {
+            valueLabel.Text = Math.Round(
+                shoppingKartList.Sum(x => x.Quantity * x.Price)
+                ,2)
+                .ToString() + " moneys";
         }
 
         //Controlling DataGridView layout
@@ -182,18 +190,29 @@ namespace TheBestCarShop
                 int quantity = productsInKart
                     .Where(x => x.ProductID == Convert.ToInt32(shoppingKartView[0, e.RowIndex].Value))
                     .Select(x => x.Quantity).Single();
+                try
+                {
+                    if (Convert.ToInt32(shoppingKartView["Quantity", e.RowIndex].Value) > quantity)
+                    {
+                        form_SystemMessage alert = new form_SystemMessage("Sorry.", "Please check available product amount.");
+                        
+                        int productID = Convert.ToInt32(shoppingKartView[0, e.RowIndex].Value);
 
-                if (Convert.ToInt32(shoppingKartView["Quantity", e.RowIndex].Value) > quantity)
-                {
-                    form_SystemMessage alert = new form_SystemMessage("Sorry.", $"Right now the quantity if this product available eguals \n{quantity}");
-                    shoppingKartView[e.ColumnIndex, e.RowIndex].Value = 1;
+                        shoppingKartView[e.ColumnIndex, e.RowIndex].Value =
+                            shoppingKartList
+                            .Where(x => x.ProductID == productID)
+                            .Select(x => x.Quantity).Single<int>();
+                    }
+                    else
+                    {
+                        int productID = (int)shoppingKartView[0, e.RowIndex].Value;
+                        int newQuantity = Convert.ToInt32(shoppingKartView["Quantity", e.RowIndex].Value);
+                        dh.UpdateQuantityInKart(_shoppingKartID, productID, newQuantity);
+                        BuildProductsList();
+                        ComputeOrderValue();
+                    }
                 }
-                else
-                {
-                    int productID = (int)shoppingKartView[0, e.RowIndex].Value;
-                    int newQuantity = Convert.ToInt32(shoppingKartView["Quantity", e.RowIndex].Value);
-                    dh.UpdateQuantityInKart(_shoppingKartID, productID, newQuantity);
-                }
+                catch (Exception gridException) { Console.WriteLine(gridException.Message); }
             }
         }
     }

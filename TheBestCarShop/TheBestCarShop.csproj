@@ -93,7 +93,7 @@
     <Compile Include="Done\form_AccountSettings.Designer.cs">
       <DependentUpon>form_AccountSettings.cs</DependentUpon>
     </Compile>
-    <Compile Include="OrderDetail.cs" />
+    <Compile Include="Class files\OrderDetail.cs" />
     <Compile Include="To do\form_MyOrders.cs">
       <SubType>Form</SubType>
     </Compile>
