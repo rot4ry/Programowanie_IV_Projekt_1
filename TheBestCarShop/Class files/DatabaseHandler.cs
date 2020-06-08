@@ -6,6 +6,7 @@ using System.Linq;
 using System.Net.Http.Headers;
 using System.Windows.Forms;
 using Dapper;
+using TheBestCarShop.Class_files;
 
 namespace TheBestCarShop
 {
@@ -549,6 +550,40 @@ namespace TheBestCarShop
             }
             connection.Close();
             return affected;
+        }
+        
+        //OTHER
+        public List<ShoppingHistoryPosition> GetCustomerHistory(int ClientID)
+        {
+            string select = 
+                "SELECT ReceivedDate, SentDate, DeliveredDate, " +
+                "Products.Name as Name, OrderDetails.Price as Price, OrderDetails.Quantity as Quantity " +
+                "FROM Orders " +
+                    "INNER JOIN " +
+                    "OrderDetails " +
+                        "ON Orders.OrderID = OrderDetails.OrderID " +
+                    "INNER JOIN " +
+                    "Products " +
+                    "ON OrderDetails.ProductID = Products.ProductID " +
+                "WHERE IsPlaced = 'true' AND CustomerID = @clientID ";
+            List<ShoppingHistoryPosition> shoppingHistory = new List<ShoppingHistoryPosition>();
+            
+            try
+            {
+                SqlConnection connection = new SqlConnection(this.connectionString);
+                shoppingHistory = connection
+                    .Query<ShoppingHistoryPosition>(select, new
+                                                    { 
+                                                        clientID = ClientID 
+                                                    })
+                    .ToList<ShoppingHistoryPosition>();
+                connection.Close();
+            }
+            catch(Exception DatabaseHandlerException)
+            {
+                Console.WriteLine(DatabaseHandlerException.Message);
+            }
+            return shoppingHistory;
         }
     }
 }

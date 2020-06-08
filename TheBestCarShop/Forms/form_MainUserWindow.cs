@@ -84,25 +84,30 @@ namespace TheBestCarShop
 
         private void shoppingKartButton_Click(object sender, EventArgs e)
         {
-            //[TODO] working shopping kart
             form_ShoppingKart shoppingKart = new form_ShoppingKart(_accountOwner);
             shoppingKart.ShowDialog();
         }
 
         private void myOrdersButton_Click(object sender, EventArgs e)
         {
-            //[TODO] all client's orders
-            form_MyOrders myOrders = new form_MyOrders();
+            form_MyOrders myOrders = new form_MyOrders(_accountOwner);
             myOrders.ShowDialog();
         }
 
         private void randomThingButton_Click(object sender, EventArgs e)
         {
-            //dh.AddOrder(_accountOwner.ClientID); PLACED ORDER WITH 1 POSITION
-            //dh.AddProduct
-            //dh.ConfirmOrder
-            //add a random product to the shopping kart and order it
-            
+            //creates a random order
+            dh.RemoveUnplacedOrder(_accountOwner.ClientID);
+            dh.AddUnplacedOrder(_accountOwner.ClientID);
+
+            List<Product> products = dh.GetAvailableProductsList();
+            int kartID = dh.GetShoppingKartID(_accountOwner.ClientID);
+            int productID = products.OrderBy(x => Guid.NewGuid()).Select(x => x.ProductID).First();
+
+            dh.AddToKartIfNotExists(kartID, productID);
+            int random = dh.UpdateProductQuantityBasedOnKart(productID, 1);
+            if (random == 1) dh.ConfirmOrder(_accountOwner.ClientID, kartID);
+            else dh.UpdateProductQuantityBasedOnKart(productID, -1);
         }
 
         private void settingsButton_Click(object sender, EventArgs e)

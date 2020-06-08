@@ -345,6 +345,7 @@ namespace TheBestCarShop
             form_ShoppingKart shoppingKart = new form_ShoppingKart(_accountOwner);
             shoppingKart.ShowDialog();
             _shoppingKartID = dh.GetShoppingKartID(_accountOwner.ClientID);
+            BuildSearchResult();
         }
 
         

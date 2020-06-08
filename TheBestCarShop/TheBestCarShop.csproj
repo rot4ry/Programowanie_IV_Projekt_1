@@ -85,6 +85,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Class files\Client.cs" />
+    <Compile Include="Class files\ShoppingHistoryPosition.cs" />
     <Compile Include="Class files\DatabaseHandler.cs" />
     <Compile Include="Class files\Product.cs" />
     <Compile Include="Done\form_AccountSettings.cs">
@@ -94,10 +95,10 @@
       <DependentUpon>form_AccountSettings.cs</DependentUpon>
     </Compile>
     <Compile Include="Class files\OrderDetail.cs" />
-    <Compile Include="To do\form_MyOrders.cs">
+    <Compile Include="Done\form_MyOrders.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="To do\form_MyOrders.Designer.cs">
+    <Compile Include="Done\form_MyOrders.Designer.cs">
       <DependentUpon>form_MyOrders.cs</DependentUpon>
     </Compile>
     <Compile Include="Properties\Resources.Designer.cs">
@@ -114,10 +115,10 @@
     <Compile Include="Done\form_CreateAccount_Extensions.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="In progress\form_MainUserWindow.cs">
+    <Compile Include="Done\form_MainUserWindow.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="In progress\form_MainUserWindow.Designer.cs">
+    <Compile Include="Done\form_MainUserWindow.Designer.cs">
       <DependentUpon>form_MainUserWindow.cs</DependentUpon>
     </Compile>
     <Compile Include="Done\form_ProductDetailsWindow.cs">
@@ -132,10 +133,10 @@
     <Compile Include="Done\form_SystemMessage.Designer.cs">
       <DependentUpon>form_SystemMessage.cs</DependentUpon>
     </Compile>
-    <Compile Include="In progress\form_ShoppingKart.cs">
+    <Compile Include="Done\form_ShoppingKart.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="In progress\form_ShoppingKart.Designer.cs">
+    <Compile Include="Done\form_ShoppingKart.Designer.cs">
       <DependentUpon>form_ShoppingKart.cs</DependentUpon>
     </Compile>
     <Compile Include="Done\form_ShopWindow.cs">
@@ -161,7 +162,7 @@
     <EmbeddedResource Include="Done\form_AccountSettings.resx">
       <DependentUpon>form_AccountSettings.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="In progress\form_MainUserWindow.resx">
+    <EmbeddedResource Include="Done\form_MainUserWindow.resx">
       <DependentUpon>form_MainUserWindow.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Done\form_ProductDetailsWindow.resx">
@@ -170,8 +171,11 @@
     <EmbeddedResource Include="Done\form_ShopWindow.resx">
       <DependentUpon>form_ShopWindow.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="In progress\form_ShoppingKart.resx">
+    <EmbeddedResource Include="Done\form_ShoppingKart.resx">
       <DependentUpon>form_ShoppingKart.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Done\form_MyOrders.resx">
+      <DependentUpon>form_MyOrders.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
