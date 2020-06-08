@@ -88,17 +88,17 @@
     <Compile Include="Class files\ShoppingHistoryPosition.cs" />
     <Compile Include="Class files\DatabaseHandler.cs" />
     <Compile Include="Class files\Product.cs" />
-    <Compile Include="Done\form_AccountSettings.cs">
+    <Compile Include="Forms\form_AccountSettings.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Done\form_AccountSettings.Designer.cs">
+    <Compile Include="Forms\form_AccountSettings.Designer.cs">
       <DependentUpon>form_AccountSettings.cs</DependentUpon>
     </Compile>
     <Compile Include="Class files\OrderDetail.cs" />
-    <Compile Include="Done\form_MyOrders.cs">
+    <Compile Include="Forms\form_MyOrders.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Done\form_MyOrders.Designer.cs">
+    <Compile Include="Forms\form_MyOrders.Designer.cs">
       <DependentUpon>form_MyOrders.cs</DependentUpon>
     </Compile>
     <Compile Include="Properties\Resources.Designer.cs">
@@ -106,75 +106,75 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <Compile Include="Done\form_CreateAccount.cs">
+    <Compile Include="Forms\form_CreateAccount.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Done\form_CreateAccount.Designer.cs">
+    <Compile Include="Forms\form_CreateAccount.Designer.cs">
       <DependentUpon>form_CreateAccount.cs</DependentUpon>
     </Compile>
-    <Compile Include="Done\form_CreateAccount_Extensions.cs">
+    <Compile Include="Forms\form_CreateAccount_Extensions.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Done\form_MainUserWindow.cs">
+    <Compile Include="Forms\form_MainUserWindow.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Done\form_MainUserWindow.Designer.cs">
+    <Compile Include="Forms\form_MainUserWindow.Designer.cs">
       <DependentUpon>form_MainUserWindow.cs</DependentUpon>
     </Compile>
-    <Compile Include="Done\form_ProductDetailsWindow.cs">
+    <Compile Include="Forms\form_ProductDetailsWindow.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Done\form_ProductDetailsWindow.Designer.cs">
+    <Compile Include="Forms\form_ProductDetailsWindow.Designer.cs">
       <DependentUpon>form_ProductDetailsWindow.cs</DependentUpon>
     </Compile>
-    <Compile Include="Done\form_SystemMessage.cs">
+    <Compile Include="Forms\form_SystemMessage.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Done\form_SystemMessage.Designer.cs">
+    <Compile Include="Forms\form_SystemMessage.Designer.cs">
       <DependentUpon>form_SystemMessage.cs</DependentUpon>
     </Compile>
-    <Compile Include="Done\form_ShoppingKart.cs">
+    <Compile Include="Forms\form_ShoppingKart.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Done\form_ShoppingKart.Designer.cs">
+    <Compile Include="Forms\form_ShoppingKart.Designer.cs">
       <DependentUpon>form_ShoppingKart.cs</DependentUpon>
     </Compile>
-    <Compile Include="Done\form_ShopWindow.cs">
+    <Compile Include="Forms\form_ShopWindow.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Done\form_ShopWindow.Designer.cs">
+    <Compile Include="Forms\form_ShopWindow.Designer.cs">
       <DependentUpon>form_ShopWindow.cs</DependentUpon>
     </Compile>
-    <Compile Include="Done\form_StartingWindow.cs">
+    <Compile Include="Forms\form_StartingWindow.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Done\form_StartingWindow.Designer.cs">
+    <Compile Include="Forms\form_StartingWindow.Designer.cs">
       <DependentUpon>form_StartingWindow.cs</DependentUpon>
     </Compile>
     <Compile Include="Class files\Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="Done\form_CreateAccount_Extensions.resx">
+    <EmbeddedResource Include="Forms\form_CreateAccount_Extensions.resx">
       <DependentUpon>form_CreateAccount_Extensions.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Done\form_SystemMessage.resx">
+    <EmbeddedResource Include="Forms\form_SystemMessage.resx">
       <DependentUpon>form_SystemMessage.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Done\form_AccountSettings.resx">
+    <EmbeddedResource Include="Forms\form_AccountSettings.resx">
       <DependentUpon>form_AccountSettings.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Done\form_MainUserWindow.resx">
+    <EmbeddedResource Include="Forms\form_MainUserWindow.resx">
       <DependentUpon>form_MainUserWindow.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Done\form_ProductDetailsWindow.resx">
+    <EmbeddedResource Include="Forms\form_ProductDetailsWindow.resx">
       <DependentUpon>form_ProductDetailsWindow.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Done\form_ShopWindow.resx">
+    <EmbeddedResource Include="Forms\form_ShopWindow.resx">
       <DependentUpon>form_ShopWindow.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Done\form_ShoppingKart.resx">
+    <EmbeddedResource Include="Forms\form_ShoppingKart.resx">
       <DependentUpon>form_ShoppingKart.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Done\form_MyOrders.resx">
+    <EmbeddedResource Include="Forms\form_MyOrders.resx">
       <DependentUpon>form_MyOrders.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -182,7 +182,7 @@
       <SubType>Designer</SubType>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="Done\form_StartingWindow.resx">
+    <EmbeddedResource Include="Forms\form_StartingWindow.resx">
       <DependentUpon>form_StartingWindow.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />
